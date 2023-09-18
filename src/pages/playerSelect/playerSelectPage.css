@@ -1,0 +1,19 @@
+.playersSetup-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 80%;
+  flex-direction: column;
+  margin: auto;
+}
+.playersSetup-page .header {
+  margin-bottom: 5rem;
+}
+
+.playersSetup-forms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}

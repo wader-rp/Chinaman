@@ -1,0 +1,14 @@
+.playerPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 50%;
+}
+
+.playerPanel-avatar {
+  width: 150px;
+  height: 150px;
+  border: 10px solid black;
+  border-radius: 50%;
+}

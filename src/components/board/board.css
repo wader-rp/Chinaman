@@ -1,0 +1,19 @@
+.fields-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.singleField {
+  position: absolute;
+  border: 2px solid;
+  border-radius: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.field-wrapper {
+  width: 100%;
+  height: 100%;
+}
