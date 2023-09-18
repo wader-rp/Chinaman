@@ -13,6 +13,12 @@ type GameContextType = {
   players: Player[];
   setFieldStatus: React.Dispatch<React.SetStateAction<Field[]>>;
   setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
+  changePlayerProperty: <P extends keyof Omit<Player, "id">>(
+    id: Player["id"],
+    property: P,
+    newValue: Player[P]
+  ) => void;
+  getPlayerById: (id: Player["id"]) => Player;
 };
 
 export const GameContext = createContext<GameContextType>(
@@ -22,10 +28,43 @@ export const GameContext = createContext<GameContextType>(
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [fieldStatus, setFieldStatus] = useState(FIELDS);
   const [players, setPlayers] = useState<Player[]>(PLAYERS);
-  console.log(players);
+
+  const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
+    id: Player["id"],
+    property: P,
+    newValue: Player[P]
+  ) => {
+    const playerIndex = players.findIndex((player) => player.id === id);
+    if (playerIndex === -1) {
+      throw new Error(`Player with id ${id} not found`);
+    }
+
+    setPlayers((prev) => {
+      const copy = [...prev];
+      copy[playerIndex][property] = newValue;
+      return copy;
+    });
+  };
+
+  const getPlayerById = (id: Player["id"]): Player => {
+    const playerIndex = players.findIndex((player) => player.id === id);
+    if (playerIndex === -1) {
+      throw new Error(`Player with id ${id} not found`);
+    }
+
+    return players[playerIndex];
+  };
+
   return (
     <GameContext.Provider
-      value={{ fieldStatus, setFieldStatus, players, setPlayers }}
+      value={{
+        fieldStatus,
+        setFieldStatus,
+        players,
+        setPlayers,
+        changePlayerProperty,
+        getPlayerById,
+      }}
     >
       {children}
     </GameContext.Provider>
