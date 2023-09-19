@@ -1,8 +1,8 @@
-import { FIELDS } from "../components/board/data/fields";
+import { INITIAL_FIELDS } from "../../components/board/data/fields";
 import React, { ReactNode, createContext, useContext, useState } from "react";
-import { Field } from "../components/board/data/types/fieldsTypes";
-import { Player } from "../components/playerSetupForm/data/types/playerTypes";
-import { PLAYERS } from "../components/playerSetupForm/data/startPlayers";
+import { Field } from "../../components/board/data/types/fieldsTypes";
+import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
+import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
 
 type GameContextProviderProps = {
   children: ReactNode;
@@ -26,8 +26,8 @@ export const GameContext = createContext<GameContextType>(
 );
 
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
-  const [fieldStatus, setFieldStatus] = useState(FIELDS);
-  const [players, setPlayers] = useState<Player[]>(PLAYERS);
+  const [fieldStatus, setFieldStatus] = useState(INITIAL_FIELDS);
+  const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
 
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
     id: Player["id"],

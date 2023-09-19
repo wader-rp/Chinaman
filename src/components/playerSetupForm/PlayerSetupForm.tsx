@@ -1,7 +1,7 @@
-import React, { useEffect, useState, ChangeEvent } from "react";
+import { useEffect, ChangeEvent } from "react";
 
 import "./playerSetupForm.css";
-import { useGameContext } from "../../contexts/gameContext";
+import { useGameContext } from "../../contexts/gameContext/gameContext";
 
 type playerProps = {
   id: number;

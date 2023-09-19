@@ -1,6 +1,6 @@
 import { Player } from "./types/playerTypes";
 
-export const PLAYERS: Player[] = [
+export const INITIAL_PLAYERS: Player[] = [
   {
     id: 1,
     isHuman: false,
