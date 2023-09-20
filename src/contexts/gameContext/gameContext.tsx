@@ -1,8 +1,9 @@
-import { FIELDS } from "../components/board/data/fields";
+import { INITIAL_FIELDS } from "../../components/board/data/fields";
 import React, { ReactNode, createContext, useContext, useState } from "react";
-import { Field } from "../components/board/data/types/fieldsTypes";
-import { Player } from "../components/playerSetupForm/data/types/playerTypes";
-import { PLAYERS } from "../components/playerSetupForm/data/startPlayers";
+import { Field } from "../../components/board/data/types/fieldsTypes";
+import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
+import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
+import { diceRoll } from "./helpers/helpers";
 
 type GameContextProviderProps = {
   children: ReactNode;
@@ -19,6 +20,8 @@ type GameContextType = {
     newValue: Player[P]
   ) => void;
   getPlayerById: (id: Player["id"]) => Player;
+  getValueFromDiceRoll: () => void;
+  valueFromDiceRoll: number | undefined;
 };
 
 export const GameContext = createContext<GameContextType>(
@@ -26,8 +29,11 @@ export const GameContext = createContext<GameContextType>(
 );
 
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
-  const [fieldStatus, setFieldStatus] = useState(FIELDS);
-  const [players, setPlayers] = useState<Player[]>(PLAYERS);
+  const [fieldStatus, setFieldStatus] = useState(INITIAL_FIELDS);
+  const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
+  const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>();
+
+  console.log(valueFromDiceRoll);
 
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
     id: Player["id"],
@@ -55,6 +61,11 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     return players[playerIndex];
   };
 
+  const getValueFromDiceRoll = () => {
+    const value = diceRoll();
+    setValueFromDiceRoll(value);
+  };
+
   return (
     <GameContext.Provider
       value={{
@@ -64,6 +75,8 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         setPlayers,
         changePlayerProperty,
         getPlayerById,
+        getValueFromDiceRoll,
+        valueFromDiceRoll,
       }}
     >
       {children}

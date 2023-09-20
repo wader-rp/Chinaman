@@ -1,27 +1,47 @@
-import React, { useEffect, useState } from "react";
-import { FIELDS } from "./data/fields";
 import { fieldColors } from "./helpers/generateFieldColors";
 import "../board/board.css";
+import { useBoardSize } from "../../hooks/useBoardSize";
+import { getPawnColor } from "./helpers/generatePawnColors";
+import { useGameContext } from "../../contexts/gameContext/gameContext";
+import {
+  dispatchPawnFromBaseField,
+  movePawnOfCertainNumberOfFields,
+} from "../../contexts/gameContext/helpers/helpers";
+import { Field } from "./data/types/fieldsTypes";
 
 export const Board = () => {
-  const [boardSize, setBoardSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
-  });
+  const size = useBoardSize();
+  const { setFieldStatus, fieldStatus, valueFromDiceRoll } = useGameContext();
 
-  useEffect(() => {
-    addEventListener("resize", () => {
-      setBoardSize({ width: window.innerWidth, height: window.innerHeight });
+  const handlePawnClick = (field: Field) => {
+    setFieldStatus((prev) => {
+      const fieldStatusCopy = [...prev];
+      // dispatchPawnFromBaseField(
+      //   field.fieldType,
+      //   field.presentPawn as string,
+      //   fieldStatusCopy
+      // );
+
+      movePawnOfCertainNumberOfFields(
+        field.presentPawn as string,
+        field,
+        valueFromDiceRoll as number,
+        fieldStatusCopy
+      );
+      console.log(fieldStatusCopy);
+      return fieldStatusCopy;
     });
-  }, []);
-
-  const smallerSide =
-    boardSize.height < boardSize.width ? boardSize.height : boardSize.width;
-  const size = smallerSide / 12;
+  };
 
   return (
     <div className="fields-container">
-      {FIELDS.map((field) => {
+      <div
+        className="value-from-dice-wrapper"
+        style={{ top: size * 5, left: size * 5 }}
+      >
+        <div className="value-from-dice">{valueFromDiceRoll}</div>
+      </div>
+      {fieldStatus.map((field) => {
         return (
           <div
             key={field.id}
@@ -34,7 +54,18 @@ export const Board = () => {
               borderColor: fieldColors(field.id),
             }}
           >
-            <div className="field-wrapper">{field.id}</div>
+            <div className="field-wrapper">
+              {field.id}
+              {field.presentPawn && (
+                <div
+                  className="pawn"
+                  style={{
+                    backgroundColor: getPawnColor(field.presentPawn),
+                  }}
+                  onClick={() => handlePawnClick(field)}
+                ></div>
+              )}
+            </div>
           </div>
         );
       })}
