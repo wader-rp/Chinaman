@@ -9,7 +9,7 @@ export const PLAYER1_BASE_FIELDS: Field[] = [
       x: 0,
       y: 0,
     },
-    presentPawn: "p1_1",
+    // presentPawn: "p1_1",
   },
   {
     id: 1002,
@@ -82,7 +82,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
     id: 3001,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 0,
+      x: 9,
       y: 9,
     },
     presentPawn: "p3_1",
@@ -91,7 +91,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
     id: 3002,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 1,
+      x: 10,
       y: 9,
     },
     presentPawn: "p3_2",
@@ -100,7 +100,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
     id: 3003,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 0,
+      x: 9,
       y: 10,
     },
     presentPawn: "p3_3",
@@ -109,7 +109,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
     id: 3004,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 1,
+      x: 10,
       y: 10,
     },
     presentPawn: "p3_4",
@@ -120,7 +120,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
     id: 4001,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 9,
+      x: 0,
       y: 9,
     },
     presentPawn: "p4_1",
@@ -129,7 +129,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
     id: 4002,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 10,
+      x: 1,
       y: 9,
     },
     presentPawn: "p4_2",
@@ -138,7 +138,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
     id: 4003,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 9,
+      x: 0,
       y: 10,
     },
     presentPawn: "p4_3",
@@ -147,7 +147,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
     id: 4004,
     fieldType: FieldTypesEnum.BASE,
     position: {
-      x: 10,
+      x: 1,
       y: 10,
     },
     presentPawn: "p4_4",
@@ -227,32 +227,32 @@ export const PLAYER3_FINISH_FIELDS: Field[] = [
     id: 3005,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 5,
-      y: 9,
+      x: 9,
+      y: 5,
     },
   },
   {
     id: 3006,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 5,
-      y: 8,
+      x: 8,
+      y: 5,
     },
   },
   {
     id: 3007,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 5,
-      y: 7,
+      x: 7,
+      y: 5,
     },
   },
   {
     id: 3008,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 5,
-      y: 6,
+      x: 6,
+      y: 5,
     },
   },
 ];
@@ -261,86 +261,81 @@ export const PLAYER4_FINISH_FIELDS: Field[] = [
     id: 4005,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 9,
-      y: 5,
+      x: 5,
+      y: 9,
     },
   },
   {
     id: 4006,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 8,
-      y: 5,
+      x: 5,
+      y: 8,
     },
   },
   {
     id: 4007,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 7,
-      y: 5,
+      x: 5,
+      y: 7,
     },
   },
   {
     id: 4008,
     fieldType: FieldTypesEnum.FINISH,
     position: {
-      x: 6,
-      y: 5,
-    },
-  },
-];
-
-export const PLAYER1_START_FIELD: Field[] = [
-  {
-    id: 1,
-    fieldType: FieldTypesEnum.START,
-    startFor: 1,
-    position: {
-      x: 0,
-      y: 4,
-    },
-  },
-];
-export const PLAYER2_START_FIELD: Field[] = [
-  {
-    id: 11,
-    fieldType: FieldTypesEnum.START,
-    startFor: 2,
-    position: {
-      x: 6,
-      y: 0,
-    },
-  },
-];
-export const PLAYER3_START_FIELD: Field[] = [
-  {
-    id: 21,
-    fieldType: FieldTypesEnum.START,
-    startFor: 3,
-    position: {
-      x: 10,
+      x: 5,
       y: 6,
     },
   },
 ];
-export const PLAYER4_START_FIELD: Field[] = [
-  {
-    id: 31,
-    fieldType: FieldTypesEnum.START,
-    startFor: 4,
-    position: {
-      x: 4,
-      y: 10,
-    },
+
+export const PLAYER1_START_FIELD: Field = {
+  id: 1,
+  fieldType: FieldTypesEnum.START,
+  startFor: 1,
+  position: {
+    x: 0,
+    y: 4,
   },
-];
+  presentPawn: "p1_1",
+};
+
+export const PLAYER2_START_FIELD: Field = {
+  id: 11,
+  fieldType: FieldTypesEnum.START,
+  startFor: 2,
+  position: {
+    x: 6,
+    y: 0,
+  },
+};
+export const PLAYER3_START_FIELD: Field = {
+  id: 21,
+  fieldType: FieldTypesEnum.START,
+  startFor: 3,
+  position: {
+    x: 10,
+    y: 6,
+  },
+};
+
+export const PLAYER4_START_FIELD: Field = {
+  id: 31,
+  fieldType: FieldTypesEnum.START,
+  startFor: 4,
+  position: {
+    x: 4,
+    y: 10,
+  },
+};
 
 export const PLAYERS_START_FIELDS: Field[] = [
-  ...PLAYER1_START_FIELD,
-  ...PLAYER2_START_FIELD,
-  ...PLAYER3_START_FIELD,
-  ...PLAYER4_START_FIELD,
+  PLAYER1_START_FIELD,
+  PLAYER2_START_FIELD,
+  PLAYER3_START_FIELD,
+  PLAYER4_START_FIELD,
 ];
 
 export const TRACK_FIELDS: Field[] = [

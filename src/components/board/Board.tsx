@@ -3,45 +3,44 @@ import "../board/board.css";
 import { useBoardSize } from "../../hooks/useBoardSize";
 import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
-import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
-import { getStartFieldByPlayerId } from "../../contexts/gameContext/helpers/helpers";
+import {
+  dispatchPawnFromBaseField,
+  movePawnOfCertainNumberOfFields,
+} from "../../contexts/gameContext/helpers/helpers";
+import { Field } from "./data/types/fieldsTypes";
 
 export const Board = () => {
   const size = useBoardSize();
-  const { setFieldStatus, fieldStatus } = useGameContext();
+  const { setFieldStatus, fieldStatus, valueFromDiceRoll } = useGameContext();
 
-  // const handlePawnClick = (pawnId: string | undefined) => {
-  //   const copy = [...fieldStatus];
-  //   const idx = copy.findIndex((field) => field.presentPawn === pawnId);
-  //   const updated = { ...copy[idx], presentPawn: "" };
-  //   copy.splice(idx, 1, updated);
-  //
-  //   setFieldStatus([...copy, updated]);
-  // };
-  // console.log(fieldStatus);
-
-  const handlePawnClick = (
-    fieldType: FieldTypesEnum,
-    pawnId: string
-    //player turn
-  ) => {
+  const handlePawnClick = (field: Field) => {
     setFieldStatus((prev) => {
-      const copy = [...prev];
-      copy.map((field) => {
-        if (fieldType === FieldTypesEnum.START) {
-          if (field.presentPawn === pawnId) {
-            return { ...field, presentPawn: undefined };
-          }
-          return field;
-        }
-      });
-      return copy;
+      const fieldStatusCopy = [...prev];
+      // dispatchPawnFromBaseField(
+      //   field.fieldType,
+      //   field.presentPawn as string,
+      //   fieldStatusCopy
+      // );
+
+      movePawnOfCertainNumberOfFields(
+        field.presentPawn as string,
+        field,
+        valueFromDiceRoll as number,
+        fieldStatusCopy
+      );
+      console.log(fieldStatusCopy);
+      return fieldStatusCopy;
     });
   };
-  console.log(fieldStatus);
 
   return (
     <div className="fields-container">
+      <div
+        className="value-from-dice-wrapper"
+        style={{ top: size * 5, left: size * 5 }}
+      >
+        <div className="value-from-dice">{valueFromDiceRoll}</div>
+      </div>
       {fieldStatus.map((field) => {
         return (
           <div
@@ -63,12 +62,7 @@ export const Board = () => {
                   style={{
                     backgroundColor: getPawnColor(field.presentPawn),
                   }}
-                  onClick={() =>
-                    handlePawnClick(
-                      field.fieldType,
-                      field.presentPawn as string
-                    )
-                  }
+                  onClick={() => handlePawnClick(field)}
                 ></div>
               )}
             </div>

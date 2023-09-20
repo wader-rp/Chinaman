@@ -25,3 +25,14 @@
   border-radius: 50%;
   cursor: pointer;
 }
+
+.value-from-dice-wrapper {
+  position: absolute;
+}
+.value-from-dice {
+  position: absolute;
+  top: 5px;
+  left: 25px;
+  font-size: 40px;
+  font-weight: bolder;
+}
