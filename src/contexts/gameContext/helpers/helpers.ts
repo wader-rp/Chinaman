@@ -14,10 +14,12 @@ export const getPlayerIdByPawnId = (pawnId: string): Player["id"] =>
 export const dispatchPawnFromBaseField = (
   fieldType: FieldTypesEnum,
   pawnId: string,
-  fieldArray: Field[]
+  fieldArray: Field[],
+  diceValue: number
 ) => {
   const playerId = getPlayerIdByPawnId(pawnId);
   const startFieldId = getStartFieldByPlayerId(playerId).id;
+  console.log(diceValue);
 
   for (let i = 0; i < fieldArray.length; i++) {
     if (fieldType === FieldTypesEnum.BASE) {

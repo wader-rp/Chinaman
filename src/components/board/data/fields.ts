@@ -9,7 +9,7 @@ export const PLAYER1_BASE_FIELDS: Field[] = [
       x: 0,
       y: 0,
     },
-    // presentPawn: "p1_1",
+    presentPawn: "p1_1",
   },
   {
     id: 1002,
@@ -299,7 +299,6 @@ export const PLAYER1_START_FIELD: Field = {
     x: 0,
     y: 4,
   },
-  presentPawn: "p1_1",
 };
 
 export const PLAYER2_START_FIELD: Field = {

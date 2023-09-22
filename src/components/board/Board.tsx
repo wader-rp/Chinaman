@@ -8,6 +8,7 @@ import {
   movePawnOfCertainNumberOfFields,
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
+import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
 
 export const Board = () => {
   const size = useBoardSize();
@@ -16,18 +17,24 @@ export const Board = () => {
   const handlePawnClick = (field: Field) => {
     setFieldStatus((prev) => {
       const fieldStatusCopy = [...prev];
-      // dispatchPawnFromBaseField(
-      //   field.fieldType,
-      //   field.presentPawn as string,
-      //   fieldStatusCopy
-      // );
+      console.log(field.fieldType);
+      if (field.fieldType === FieldTypesEnum.BASE) {
+        dispatchPawnFromBaseField(
+          field.fieldType,
+          field.presentPawn as string,
+          fieldStatusCopy,
+          valueFromDiceRoll as number
+        );
+      }
 
-      movePawnOfCertainNumberOfFields(
-        field.presentPawn as string,
-        field,
-        valueFromDiceRoll as number,
-        fieldStatusCopy
-      );
+      if (field.fieldType === FieldTypesEnum.TRACK || FieldTypesEnum.TRACK) {
+        movePawnOfCertainNumberOfFields(
+          field.presentPawn as string,
+          field,
+          valueFromDiceRoll as number,
+          fieldStatusCopy
+        );
+      }
       console.log(fieldStatusCopy);
       return fieldStatusCopy;
     });
