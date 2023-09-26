@@ -22,6 +22,8 @@ type GameContextType = {
   getPlayerById: (id: Player["id"]) => Player;
   getValueFromDiceRoll: () => void;
   valueFromDiceRoll: number | undefined;
+  activePlayer: Player["id"];
+  setActivePlayer: React.Dispatch<React.SetStateAction<Player["id"]>>;
 };
 
 export const GameContext = createContext<GameContextType>(
@@ -32,8 +34,9 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [fieldStatus, setFieldStatus] = useState(INITIAL_FIELDS);
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
   const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>();
+  const [activePlayer, setActivePlayer] = useState<Player["id"]>(1);
 
-  console.log(valueFromDiceRoll);
+ 
 
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
     id: Player["id"],
@@ -77,6 +80,8 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         getPlayerById,
         getValueFromDiceRoll,
         valueFromDiceRoll,
+        activePlayer,
+        setActivePlayer,
       }}
     >
       {children}

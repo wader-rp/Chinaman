@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+:root {
+  --blue-font-dark: hsl(209, 32%, 19%);
+  --blue-dark: hsl(208, 32%, 45%);
+  --blue-light: hsl(207, 15%, 61%);
+
+  --blue-ncs: hsla(198, 58%, 43%, 1);
+  --vanilla: hsl(121, 100%, 70%);
+  --icterine: hsla(61, 92%, 63%, 1);
+  --vermilion: hsla(4, 88%, 58%, 1);
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
