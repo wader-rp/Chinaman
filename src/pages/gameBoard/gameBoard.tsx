@@ -2,24 +2,27 @@ import React from "react";
 import { PlayerPanel } from "../../components/playerpanels/PlayerPanels";
 import { Board } from "../../components/board/Board";
 import "../../pages/gameBoard/gameBoard.css";
+import { useGameContext } from "../../contexts/gameContext/gameContext";
 
 export const GameBoard = () => {
+  const { players } = useGameContext();
+
   return (
     <div className="gameBoard-container">
       <div className="playerPanels">
         <PlayerPanel
-          playerAvatar="https://v.wpimg.pl/MTAyZmJhYjUgGyxeZRNvIGNDeAQjSmF2NFtgT2VQfWQ5VjwEJg0_MTEWdAo4HT01Ngl0HSZHLCQoVixcZQwkJzEVOxRlDSA2JB11DnkLKGUgTGNAcwp8ZWxNOF59RS8ydkh3CShQdWVxSzwPK1ssdjw"
-          playerClass="Alkoholik"
-          playerName="Andrzej"
-          isHuman={true}
-          id={1}
+          id={players[0].id}
+          isHuman={players[0].isHuman}
+          playerName={players[0].playerName}
+          playerAvatar={players[0].playerAvatar}
+          playerClass={players[0].playerClass}
         />
         <PlayerPanel
-          playerAvatar="https://v.wpimg.pl/MTAyZmJhYjUgGyxeZRNvIGNDeAQjSmF2NFtgT2VQfWQ5VjwEJg0_MTEWdAo4HT01Ngl0HSZHLCQoVixcZQwkJzEVOxRlDSA2JB11DnkLKGUgTGNAcwp8ZWxNOF59RS8ydkh3CShQdWVxSzwPK1ssdjw"
-          playerClass="Alkoholik"
-          playerName="Andrzej"
-          isHuman={true}
-          id={2}
+          id={players[3].id}
+          isHuman={players[3].isHuman}
+          playerName={players[3].playerName}
+          playerAvatar={players[3].playerAvatar}
+          playerClass={players[3].playerClass}
         />
       </div>
       <div className="board">
@@ -27,18 +30,18 @@ export const GameBoard = () => {
       </div>
       <div className="playerPanels">
         <PlayerPanel
-          playerAvatar="https://v.wpimg.pl/MTAyZmJhYjUgGyxeZRNvIGNDeAQjSmF2NFtgT2VQfWQ5VjwEJg0_MTEWdAo4HT01Ngl0HSZHLCQoVixcZQwkJzEVOxRlDSA2JB11DnkLKGUgTGNAcwp8ZWxNOF59RS8ydkh3CShQdWVxSzwPK1ssdjw"
-          playerClass="Alkoholik"
-          playerName="Andrzej"
-          isHuman={true}
-          id={3}
+          id={players[1].id}
+          isHuman={players[1].isHuman}
+          playerName={players[1].playerName}
+          playerAvatar={players[1].playerAvatar}
+          playerClass={players[1].playerClass}
         />
         <PlayerPanel
-          playerAvatar="https://v.wpimg.pl/MTAyZmJhYjUgGyxeZRNvIGNDeAQjSmF2NFtgT2VQfWQ5VjwEJg0_MTEWdAo4HT01Ngl0HSZHLCQoVixcZQwkJzEVOxRlDSA2JB11DnkLKGUgTGNAcwp8ZWxNOF59RS8ydkh3CShQdWVxSzwPK1ssdjw"
-          playerClass="Alkoholik"
-          playerName="Andrzej"
-          isHuman={true}
-          id={4}
+          id={players[2].id}
+          isHuman={players[2].isHuman}
+          playerName={players[2].playerName}
+          playerAvatar={players[2].playerAvatar}
+          playerClass={players[2].playerClass}
         />
       </div>
     </div>

@@ -5,6 +5,7 @@ import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import {
   dispatchPawnFromBaseField,
+  getPlayerIdByPawnId,
   movePawnOfCertainNumberOfFields,
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
@@ -12,12 +13,18 @@ import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
 
 export const Board = () => {
   const size = useBoardSize();
-  const { setFieldStatus, fieldStatus, valueFromDiceRoll } = useGameContext();
+  const {
+    setFieldStatus,
+    fieldStatus,
+    valueFromDiceRoll,
+    activePlayer,
+    players,
+  } = useGameContext();
 
   const handlePawnClick = (field: Field) => {
     setFieldStatus((prev) => {
       const fieldStatusCopy = [...prev];
-      console.log(field.fieldType);
+
       if (field.fieldType === FieldTypesEnum.BASE) {
         dispatchPawnFromBaseField(
           field.fieldType,
@@ -35,13 +42,14 @@ export const Board = () => {
           fieldStatusCopy
         );
       }
-      console.log(fieldStatusCopy);
+
       return fieldStatusCopy;
     });
   };
 
   return (
     <div className="fields-container">
+      <span>{`Now it's ${players[activePlayer - 1].playerName} turn`}</span>
       <div
         className="value-from-dice-wrapper"
         style={{ top: size * 5, left: size * 5 }}
@@ -49,6 +57,16 @@ export const Board = () => {
         <div className="value-from-dice">{valueFromDiceRoll}</div>
       </div>
       {fieldStatus.map((field) => {
+        const activatePawnsForPlayer = () => {
+          if (getPlayerIdByPawnId(field.presentPawn as string) === activePlayer)
+            handlePawnClick(field);
+        };
+
+        const getCursorStyle = () => {
+          if (getPlayerIdByPawnId(field.presentPawn as string) !== activePlayer)
+            return "not-allowed";
+        };
+
         return (
           <div
             key={field.id}
@@ -68,8 +86,9 @@ export const Board = () => {
                   className="pawn"
                   style={{
                     backgroundColor: getPawnColor(field.presentPawn),
+                    cursor: getCursorStyle(),
                   }}
-                  onClick={() => handlePawnClick(field)}
+                  onClick={activatePawnsForPlayer}
                 ></div>
               )}
             </div>

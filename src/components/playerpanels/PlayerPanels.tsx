@@ -8,18 +8,22 @@ export const PlayerPanel: FC<Player> = ({
   playerName,
   playerClass,
   playerAvatar,
+  id,
 }) => {
-  const { getValueFromDiceRoll } = useGameContext();
+  const { getValueFromDiceRoll, activePlayer } = useGameContext();
 
   return (
     <div className="playerPanel">
       <img alt="avatar" className="playerPanel-avatar" src={playerAvatar}></img>
       <span className="player-name">{playerName}</span>
       <span className="player-class">{playerClass}</span>
-      <button className="dice-button" onClick={getValueFromDiceRoll}>
-        {" "}
-        ROLL
-      </button>
+
+      {id === activePlayer && (
+        <button className="dice-button" onClick={getValueFromDiceRoll}>
+          {" "}
+          ROLL
+        </button>
+      )}
     </div>
   );
 };

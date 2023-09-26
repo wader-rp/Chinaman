@@ -17,14 +17,6 @@ export const PlayerSetupForm = ({ id }: playerProps) => {
     changePlayerProperty(id, "isHuman", e.target.value === "human");
   };
 
-  useEffect(() => {
-    const newName = isHuman
-      ? playerName.replace("BOT ", "")
-      : `BOT ${playerName}`;
-    changePlayerProperty(id, "playerName", newName);
-    console.log(newName);
-  }, [isHuman]);
-
   return (
     <div className="playerSetup-form">
       <h2 className="playerSetup-title">Are you a human ?</h2>

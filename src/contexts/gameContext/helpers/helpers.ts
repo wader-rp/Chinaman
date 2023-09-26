@@ -19,7 +19,6 @@ export const dispatchPawnFromBaseField = (
 ) => {
   const playerId = getPlayerIdByPawnId(pawnId);
   const startFieldId = getStartFieldByPlayerId(playerId).id;
-  console.log(diceValue);
 
   for (let i = 0; i < fieldArray.length; i++) {
     if (fieldType === FieldTypesEnum.BASE) {
