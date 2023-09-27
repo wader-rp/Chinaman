@@ -35,9 +35,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
   const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>();
   const [activePlayer, setActivePlayer] = useState<Player["id"]>(1);
-
- 
-
+  
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
     id: Player["id"],
     property: P,

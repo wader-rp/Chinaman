@@ -51,13 +51,27 @@ export const movePawnOfCertainNumberOfFields = (
   const indexAfterDiceThrow = fieldArray.findIndex(
     (f) => f.id === field.id + valueFromDice
   );
-  const destinationField = fieldArray[indexAfterDiceThrow];
-  // zbijanie :)
 
-  fieldArray[indexAfterDiceThrow] = {
-    ...fieldArray[indexAfterDiceThrow],
-    presentPawn: pawnId,
-  };
+  const destinationField = fieldArray[indexAfterDiceThrow];
+
+  if (destinationField.presentPawn === undefined) {
+    fieldArray[indexAfterDiceThrow] = {
+      ...fieldArray[indexAfterDiceThrow],
+      presentPawn: pawnId,
+    };
+  }
+  if (destinationField.presentPawn !== undefined) {
+    if (
+      // <=============== JEŻELI WBIJA PION TEGO SAMEGO GRACZA
+      getPlayerIdByPawnId(pawnId) ===
+      getPlayerIdByPawnId(destinationField.presentPawn as string)
+    ) {
+      fieldArray[indexAfterDiceThrow] = {
+        ...fieldArray[indexAfterDiceThrow],
+        presentPawn: pawnId,
+      };
+    }
+  }
 };
 
 export const diceRoll = (): number => {

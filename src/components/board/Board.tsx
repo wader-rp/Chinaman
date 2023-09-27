@@ -20,12 +20,12 @@ export const Board = () => {
     activePlayer,
     players,
   } = useGameContext();
-
+  console.log(fieldStatus);
   const handlePawnClick = (field: Field) => {
     setFieldStatus((prev) => {
       const fieldStatusCopy = [...prev];
 
-      if (field.fieldType === FieldTypesEnum.BASE) {
+      if (field.fieldType === FieldTypesEnum.BASE && valueFromDiceRoll === 6) {
         dispatchPawnFromBaseField(
           field.fieldType,
           field.presentPawn as string,
@@ -34,7 +34,7 @@ export const Board = () => {
         );
       }
 
-      if (field.fieldType === FieldTypesEnum.TRACK || FieldTypesEnum.TRACK) {
+      if (field.fieldType !== FieldTypesEnum.BASE) {
         movePawnOfCertainNumberOfFields(
           field.presentPawn as string,
           field,
@@ -58,12 +58,26 @@ export const Board = () => {
       </div>
       {fieldStatus.map((field) => {
         const activatePawnsForPlayer = () => {
-          if (getPlayerIdByPawnId(field.presentPawn as string) === activePlayer)
-            handlePawnClick(field);
+          if (
+            getPlayerIdByPawnId(field.presentPawn as string) === activePlayer
+          ) {
+            if (
+              field.fieldType === FieldTypesEnum.BASE &&
+              valueFromDiceRoll === 6
+            ) {
+              handlePawnClick(field);
+            }
+            if (field.fieldType !== FieldTypesEnum.BASE) {
+              handlePawnClick(field);
+            }
+          }
         };
 
         const getCursorStyle = () => {
-          if (getPlayerIdByPawnId(field.presentPawn as string) !== activePlayer)
+          if (
+            getPlayerIdByPawnId(field.presentPawn as string) !== activePlayer ||
+            valueFromDiceRoll === undefined
+          )
             return "not-allowed";
         };
 
@@ -85,7 +99,7 @@ export const Board = () => {
                 <div
                   className="pawn"
                   style={{
-                    backgroundColor: getPawnColor(field.presentPawn),
+                    backgroundColor: getPawnColor(field.presentPawn as string),
                     cursor: getCursorStyle(),
                   }}
                   onClick={activatePawnsForPlayer}

@@ -162,6 +162,7 @@ export const PLAYER1_FINISH_FIELDS: Field[] = [
       x: 1,
       y: 5,
     },
+    presentPawn: undefined,
   },
   {
     id: 1006,
@@ -170,6 +171,7 @@ export const PLAYER1_FINISH_FIELDS: Field[] = [
       x: 2,
       y: 5,
     },
+    presentPawn: undefined,
   },
   {
     id: 1007,
@@ -178,6 +180,7 @@ export const PLAYER1_FINISH_FIELDS: Field[] = [
       x: 3,
       y: 5,
     },
+    presentPawn: undefined,
   },
   {
     id: 1008,
@@ -186,6 +189,7 @@ export const PLAYER1_FINISH_FIELDS: Field[] = [
       x: 4,
       y: 5,
     },
+    presentPawn: undefined,
   },
 ];
 export const PLAYER2_FINISH_FIELDS: Field[] = [
@@ -196,6 +200,7 @@ export const PLAYER2_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 1,
     },
+    presentPawn: undefined,
   },
   {
     id: 2006,
@@ -204,6 +209,7 @@ export const PLAYER2_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 2,
     },
+    presentPawn: undefined,
   },
   {
     id: 2007,
@@ -212,6 +218,7 @@ export const PLAYER2_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 3,
     },
+    presentPawn: undefined,
   },
   {
     id: 2008,
@@ -220,6 +227,7 @@ export const PLAYER2_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 4,
     },
+    presentPawn: undefined,
   },
 ];
 export const PLAYER3_FINISH_FIELDS: Field[] = [
@@ -230,6 +238,7 @@ export const PLAYER3_FINISH_FIELDS: Field[] = [
       x: 9,
       y: 5,
     },
+    presentPawn: undefined,
   },
   {
     id: 3006,
@@ -238,6 +247,7 @@ export const PLAYER3_FINISH_FIELDS: Field[] = [
       x: 8,
       y: 5,
     },
+    presentPawn: undefined,
   },
   {
     id: 3007,
@@ -246,6 +256,7 @@ export const PLAYER3_FINISH_FIELDS: Field[] = [
       x: 7,
       y: 5,
     },
+    presentPawn: undefined,
   },
   {
     id: 3008,
@@ -254,6 +265,7 @@ export const PLAYER3_FINISH_FIELDS: Field[] = [
       x: 6,
       y: 5,
     },
+    presentPawn: undefined,
   },
 ];
 export const PLAYER4_FINISH_FIELDS: Field[] = [
@@ -264,6 +276,7 @@ export const PLAYER4_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 9,
     },
+    presentPawn: undefined,
   },
   {
     id: 4006,
@@ -272,6 +285,7 @@ export const PLAYER4_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 8,
     },
+    presentPawn: undefined,
   },
   {
     id: 4007,
@@ -280,6 +294,7 @@ export const PLAYER4_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 7,
     },
+    presentPawn: undefined,
   },
   {
     id: 4008,
@@ -288,6 +303,7 @@ export const PLAYER4_FINISH_FIELDS: Field[] = [
       x: 5,
       y: 6,
     },
+    presentPawn: undefined,
   },
 ];
 
@@ -299,6 +315,7 @@ export const PLAYER1_START_FIELD: Field = {
     x: 0,
     y: 4,
   },
+  presentPawn: undefined,
 };
 
 export const PLAYER2_START_FIELD: Field = {
@@ -309,6 +326,7 @@ export const PLAYER2_START_FIELD: Field = {
     x: 6,
     y: 0,
   },
+  presentPawn: undefined,
 };
 export const PLAYER3_START_FIELD: Field = {
   id: 21,
@@ -318,6 +336,7 @@ export const PLAYER3_START_FIELD: Field = {
     x: 10,
     y: 6,
   },
+  presentPawn: undefined,
 };
 
 export const PLAYER4_START_FIELD: Field = {
@@ -328,6 +347,7 @@ export const PLAYER4_START_FIELD: Field = {
     x: 4,
     y: 10,
   },
+  presentPawn: undefined,
 };
 
 export const PLAYERS_START_FIELDS: Field[] = [
@@ -345,6 +365,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 1,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 3,
@@ -353,6 +374,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 2,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 4,
@@ -361,6 +383,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 3,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 5,
@@ -369,6 +392,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 6,
@@ -377,6 +401,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 3,
     },
+    presentPawn: undefined,
   },
   {
     id: 7,
@@ -385,6 +410,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 2,
     },
+    presentPawn: undefined,
   },
   {
     id: 8,
@@ -393,6 +419,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 1,
     },
+    presentPawn: undefined,
   },
   {
     id: 9,
@@ -401,6 +428,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 0,
     },
+    presentPawn: undefined,
   },
   {
     id: 10,
@@ -409,6 +437,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 5,
       y: 0,
     },
+    presentPawn: undefined,
   },
 
   {
@@ -418,6 +447,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 1,
     },
+    presentPawn: undefined,
   },
   {
     id: 13,
@@ -426,6 +456,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 2,
     },
+    presentPawn: undefined,
   },
   {
     id: 14,
@@ -434,6 +465,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 3,
     },
+    presentPawn: undefined,
   },
   {
     id: 15,
@@ -442,6 +474,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 16,
@@ -450,6 +483,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 7,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 17,
@@ -458,6 +492,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 8,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 18,
@@ -466,6 +501,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 9,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 19,
@@ -474,6 +510,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 10,
       y: 4,
     },
+    presentPawn: undefined,
   },
   {
     id: 20,
@@ -482,6 +519,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 10,
       y: 5,
     },
+    presentPawn: undefined,
   },
 
   {
@@ -491,6 +529,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 9,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 23,
@@ -499,6 +538,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 8,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 24,
@@ -507,6 +547,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 7,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 25,
@@ -515,6 +556,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 26,
@@ -523,6 +565,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 7,
     },
+    presentPawn: undefined,
   },
   {
     id: 27,
@@ -531,6 +574,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 8,
     },
+    presentPawn: undefined,
   },
   {
     id: 28,
@@ -539,6 +583,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 9,
     },
+    presentPawn: undefined,
   },
   {
     id: 29,
@@ -547,6 +592,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 6,
       y: 10,
     },
+    presentPawn: undefined,
   },
   {
     id: 30,
@@ -555,6 +601,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 5,
       y: 10,
     },
+    presentPawn: undefined,
   },
 
   {
@@ -564,6 +611,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 9,
     },
+    presentPawn: undefined,
   },
   {
     id: 33,
@@ -572,6 +620,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 8,
     },
+    presentPawn: undefined,
   },
   {
     id: 34,
@@ -580,6 +629,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 7,
     },
+    presentPawn: undefined,
   },
   {
     id: 35,
@@ -588,6 +638,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 4,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 36,
@@ -596,6 +647,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 3,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 37,
@@ -604,6 +656,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 2,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 38,
@@ -612,6 +665,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 1,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 39,
@@ -620,6 +674,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 0,
       y: 6,
     },
+    presentPawn: undefined,
   },
   {
     id: 40,
@@ -628,6 +683,7 @@ export const TRACK_FIELDS: Field[] = [
       x: 0,
       y: 5,
     },
+    presentPawn: undefined,
   },
 ];
 
