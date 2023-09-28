@@ -12,5 +12,5 @@ export type Field = {
   fieldType: FieldTypesEnum;
   position: Position;
   startFor?: Player["id"];
-  presentPawn?: Pawn["id"] | Pawn["id"][]; //!!!!
+  presentPawns: Pawn["id"][];
 };

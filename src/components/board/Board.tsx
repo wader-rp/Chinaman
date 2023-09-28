@@ -4,9 +4,10 @@ import { useBoardSize } from "../../hooks/useBoardSize";
 import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import {
+  activatePawnsForPlayer,
   dispatchPawnFromBaseField,
   getPlayerIdByPawnId,
-  movePawnOfCertainNumberOfFields,
+  movePawnCertainNumberOfFields,
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
@@ -20,7 +21,7 @@ export const Board = () => {
     activePlayer,
     players,
   } = useGameContext();
-  console.log(fieldStatus);
+
   const handlePawnClick = (field: Field) => {
     setFieldStatus((prev) => {
       const fieldStatusCopy = [...prev];
@@ -28,21 +29,20 @@ export const Board = () => {
       if (field.fieldType === FieldTypesEnum.BASE && valueFromDiceRoll === 6) {
         dispatchPawnFromBaseField(
           field.fieldType,
-          field.presentPawn as string,
-          fieldStatusCopy,
-          valueFromDiceRoll as number
+          field.presentPawns[0],
+          fieldStatusCopy
         );
       }
 
       if (field.fieldType !== FieldTypesEnum.BASE) {
-        movePawnOfCertainNumberOfFields(
-          field.presentPawn as string,
+        movePawnCertainNumberOfFields(
+          field.presentPawns[0],
           field,
           valueFromDiceRoll as number,
           fieldStatusCopy
         );
       }
-
+      console.log(fieldStatus[17]);
       return fieldStatusCopy;
     });
   };
@@ -57,25 +57,9 @@ export const Board = () => {
         <div className="value-from-dice">{valueFromDiceRoll}</div>
       </div>
       {fieldStatus.map((field) => {
-        const activatePawnsForPlayer = () => {
-          if (
-            getPlayerIdByPawnId(field.presentPawn as string) === activePlayer
-          ) {
-            if (
-              field.fieldType === FieldTypesEnum.BASE &&
-              valueFromDiceRoll === 6
-            ) {
-              handlePawnClick(field);
-            }
-            if (field.fieldType !== FieldTypesEnum.BASE) {
-              handlePawnClick(field);
-            }
-          }
-        };
-
         const getCursorStyle = () => {
           if (
-            getPlayerIdByPawnId(field.presentPawn as string) !== activePlayer ||
+            getPlayerIdByPawnId(field.presentPawns[0]) !== activePlayer ||
             valueFromDiceRoll === undefined
           )
             return "not-allowed";
@@ -95,14 +79,21 @@ export const Board = () => {
           >
             <div className="field-wrapper">
               {field.id}
-              {field.presentPawn && (
+              {field.presentPawns.length !== 0 && (
                 <div
                   className="pawn"
                   style={{
-                    backgroundColor: getPawnColor(field.presentPawn as string),
+                    backgroundColor: getPawnColor(field.presentPawns[0]),
                     cursor: getCursorStyle(),
                   }}
-                  onClick={activatePawnsForPlayer}
+                  onClick={() =>
+                    activatePawnsForPlayer(
+                      field,
+                      field.presentPawns,
+                      activePlayer,
+                      handlePawnClick
+                    )
+                  }
                 ></div>
               )}
             </div>
