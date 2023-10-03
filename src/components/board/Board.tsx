@@ -6,7 +6,7 @@ import { useGameContext } from "../../contexts/gameContext/gameContext";
 import {
   dispatchPawnFromBaseField,
   getPlayerIdByPawnId,
-  movePawnOfCertainNumberOfFields,
+  movePawnCertainNumberOfFields,
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
@@ -19,32 +19,28 @@ export const Board = () => {
     valueFromDiceRoll,
     activePlayer,
     players,
+    setNextActivePlayer,
   } = useGameContext();
 
   const handlePawnClick = (field: Field) => {
-    setFieldStatus((prev) => {
-      const fieldStatusCopy = [...prev];
+    const fieldStatusCopy = [...fieldStatus];
 
-      if (field.fieldType === FieldTypesEnum.BASE) {
-        dispatchPawnFromBaseField(
-          field.fieldType,
-          field.presentPawn as string,
-          fieldStatusCopy,
-          valueFromDiceRoll as number
-        );
-      }
+    if (field.fieldType === FieldTypesEnum.BASE && valueFromDiceRoll === 6) {
+      dispatchPawnFromBaseField(field.presentPawns[0], fieldStatusCopy);
+    }
 
-      if (field.fieldType === FieldTypesEnum.TRACK || FieldTypesEnum.TRACK) {
-        movePawnOfCertainNumberOfFields(
-          field.presentPawn as string,
-          field,
-          valueFromDiceRoll as number,
-          fieldStatusCopy
-        );
-      }
+    if (field.fieldType !== FieldTypesEnum.BASE) {
+      movePawnCertainNumberOfFields(
+        field.presentPawns[0],
+        field,
+        valueFromDiceRoll as number,
+        fieldStatusCopy
+      );
+    }
+    console.log(fieldStatusCopy);
 
-      return fieldStatusCopy;
-    });
+    setFieldStatus(fieldStatusCopy);
+    setNextActivePlayer();
   };
 
   return (
@@ -57,15 +53,17 @@ export const Board = () => {
         <div className="value-from-dice">{valueFromDiceRoll}</div>
       </div>
       {fieldStatus.map((field) => {
-        const activatePawnsForPlayer = () => {
-          if (getPlayerIdByPawnId(field.presentPawn as string) === activePlayer)
-            handlePawnClick(field);
-        };
-
         const getCursorStyle = () => {
-          if (getPlayerIdByPawnId(field.presentPawn as string) !== activePlayer)
+          if (
+            getPlayerIdByPawnId(field.presentPawns[0]) !== activePlayer ||
+            valueFromDiceRoll === undefined
+          )
             return "not-allowed";
         };
+
+        // const getPawnOffset = ():  => {
+        //   if ()
+        // }
 
         return (
           <div
@@ -81,16 +79,28 @@ export const Board = () => {
           >
             <div className="field-wrapper">
               {field.id}
-              {field.presentPawn && (
+              {field.presentPawns.map((pawn, index) => (
                 <div
+                  key={`${index}_${pawn}`}
                   className="pawn"
                   style={{
-                    backgroundColor: getPawnColor(field.presentPawn),
+                    backgroundColor: getPawnColor(field.presentPawns[0]),
                     cursor: getCursorStyle(),
+                    top: index * 5,
+                    left: index * 5,
                   }}
-                  onClick={activatePawnsForPlayer}
-                ></div>
-              )}
+                  onClick={() => {
+                    if (
+                      getPlayerIdByPawnId(field.presentPawns[0]) ===
+                      activePlayer
+                    ) {
+                      handlePawnClick(field);
+                    }
+                  }}
+                >
+                  {pawn}
+                </div>
+              ))}
             </div>
           </div>
         );
