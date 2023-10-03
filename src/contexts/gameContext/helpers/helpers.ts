@@ -13,33 +13,26 @@ export const getStartFieldByPlayerId = (playerId: Player["id"]): Field => {
 };
 
 export const getPlayerIdByPawnId = (pawnId: Pawn["id"]): Player["id"] => {
+  console.log(pawnId);
   const pawnIndex = PAWNS.findIndex((pawn) => pawn.id === pawnId);
 
   return PAWNS[pawnIndex].owner;
 };
 
 export const dispatchPawnFromBaseField = (
-  fieldType: FieldTypesEnum,
   pawnId: string,
   fieldArray: Field[]
 ) => {
-  console.log("ELO");
+  console.log(pawnId);
   const playerId = getPlayerIdByPawnId(pawnId);
+
   const startFieldId = getStartFieldByPlayerId(playerId).id;
-  const baseFieldIndex = PLAYERS_BASE_FIELDS.findIndex(
+
+  const baseFieldIndex = fieldArray.findIndex(
     (f) => f.presentPawns[0] === pawnId
   );
-  console.log(baseFieldIndex);
-  fieldArray[baseFieldIndex].presentPawns.pop();
 
-  // for (let i = 0; i < fieldArray.length; i++) {
-  //   if (fieldType === FieldTypesEnum.BASE) {
-  //     if (fieldArray[i].presentPawns.includes(pawnId)) {
-  //       fieldArray[i] = { ...fieldArray[i], presentPawns: [] };
-  //       console.log("NA PIZDE ANDRZEJU MI TU KURWA MALUJESZ");
-  //     }
-  //   }
-  // }
+  fieldArray[baseFieldIndex].presentPawns.pop();
 
   const startFieldIndex = fieldArray.findIndex((f) => f.id === startFieldId);
   fieldArray[startFieldIndex].presentPawns.push(pawnId);
@@ -63,15 +56,16 @@ export const movePawnCertainNumberOfFields = (
 
   if (destinationField.presentPawns.length === 0) {
     destinationField.presentPawns.push(pawnId);
-  }
-
-  if (destinationField.presentPawns.length !== 0) {
+  } else {
     if (
       // <=============== JEŻELI WBIJA PION TEGO SAMEGO GRACZA
       getPlayerIdByPawnId(pawnId) ===
       getPlayerIdByPawnId(destinationField.presentPawns[0])
     ) {
       destinationField.presentPawns.push(pawnId);
+    } else {
+      destinationField.presentPawns.splice(0, destinationField.presentPawns.length)
+      destinationField.presentPawns.push(pawnId)
     }
   }
 };
@@ -85,11 +79,10 @@ export const diceRoll = (): number => {
 
 export const activatePawnsForPlayer = (
   field: Field,
-  fieldPresentPawns: Field["presentPawns"],
   activePlayer: Player["id"],
   handlePawnClick: (field: Field) => void
 ) => {
-  if (getPlayerIdByPawnId(fieldPresentPawns[0]) === activePlayer) {
+  if (getPlayerIdByPawnId(field.presentPawns[0]) === activePlayer) {
     handlePawnClick(field);
   }
 };

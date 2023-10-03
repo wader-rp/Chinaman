@@ -24,6 +24,7 @@ type GameContextType = {
   valueFromDiceRoll: number | undefined;
   activePlayer: Player["id"];
   setActivePlayer: React.Dispatch<React.SetStateAction<Player["id"]>>;
+  setNextActivePlayer: () => void;
 };
 
 export const GameContext = createContext<GameContextType>(
@@ -67,6 +68,9 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     setValueFromDiceRoll(value);
   };
 
+  const setNextActivePlayer = () =>
+    setActivePlayer((prev) => (prev < 4 ? prev + 1 : 1));
+
   return (
     <GameContext.Provider
       value={{
@@ -80,6 +84,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         valueFromDiceRoll,
         activePlayer,
         setActivePlayer,
+        setNextActivePlayer,
       }}
     >
       {children}

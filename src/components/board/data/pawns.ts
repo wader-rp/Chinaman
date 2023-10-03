@@ -7,8 +7,8 @@ export type Pawn = {
 
 export const PAWNS: readonly Pawn[] = [
   { id: "p1_1", owner: 1 },
-  { id: "p1_3", owner: 1 },
   { id: "p1_2", owner: 1 },
+  { id: "p1_3", owner: 1 },
   { id: "p1_4", owner: 1 },
   { id: "p2_1", owner: 2 },
   { id: "p2_2", owner: 2 },
