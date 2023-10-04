@@ -5,6 +5,7 @@ export const PLAYER1_BASE_FIELDS: Field[] = [
   {
     id: 1001,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 1,
     position: {
       x: 0,
       y: 0,
@@ -14,6 +15,7 @@ export const PLAYER1_BASE_FIELDS: Field[] = [
   {
     id: 1002,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 1,
     position: {
       x: 1,
       y: 0,
@@ -23,6 +25,7 @@ export const PLAYER1_BASE_FIELDS: Field[] = [
   {
     id: 1003,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 1,
     position: {
       x: 0,
       y: 1,
@@ -32,6 +35,7 @@ export const PLAYER1_BASE_FIELDS: Field[] = [
   {
     id: 1004,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 1,
     position: {
       x: 1,
       y: 1,
@@ -43,6 +47,7 @@ export const PLAYER2_BASE_FIELDS: Field[] = [
   {
     id: 2001,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 2,
     position: {
       x: 9,
       y: 0,
@@ -52,6 +57,7 @@ export const PLAYER2_BASE_FIELDS: Field[] = [
   {
     id: 2002,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 2,
     position: {
       x: 10,
       y: 0,
@@ -61,6 +67,7 @@ export const PLAYER2_BASE_FIELDS: Field[] = [
   {
     id: 2003,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 2,
     position: {
       x: 9,
       y: 1,
@@ -70,6 +77,7 @@ export const PLAYER2_BASE_FIELDS: Field[] = [
   {
     id: 2004,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 2,
     position: {
       x: 10,
       y: 1,
@@ -81,6 +89,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
   {
     id: 3001,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 3,
     position: {
       x: 9,
       y: 9,
@@ -90,6 +99,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
   {
     id: 3002,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 3,
     position: {
       x: 10,
       y: 9,
@@ -99,6 +109,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
   {
     id: 3003,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 3,
     position: {
       x: 9,
       y: 10,
@@ -108,6 +119,7 @@ export const PLAYER3_BASE_FIELDS: Field[] = [
   {
     id: 3004,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 3,
     position: {
       x: 10,
       y: 10,
@@ -119,6 +131,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
   {
     id: 4001,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 4,
     position: {
       x: 0,
       y: 9,
@@ -128,6 +141,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
   {
     id: 4002,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 4,
     position: {
       x: 1,
       y: 9,
@@ -137,6 +151,8 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
   {
     id: 4003,
     fieldType: FieldTypesEnum.BASE,
+
+    baseFor: 4,
     position: {
       x: 0,
       y: 10,
@@ -146,6 +162,7 @@ export const PLAYER4_BASE_FIELDS: Field[] = [
   {
     id: 4004,
     fieldType: FieldTypesEnum.BASE,
+    baseFor: 4,
     position: {
       x: 1,
       y: 10,

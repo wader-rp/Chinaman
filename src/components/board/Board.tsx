@@ -37,10 +37,10 @@ export const Board = () => {
         fieldStatusCopy
       );
     }
-    console.log(fieldStatusCopy);
 
     setFieldStatus(fieldStatusCopy);
     setNextActivePlayer();
+    console.log(fieldStatusCopy);
   };
 
   return (
