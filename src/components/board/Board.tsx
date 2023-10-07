@@ -79,28 +79,32 @@ export const Board = () => {
           >
             <div className="field-wrapper">
               {field.id}
-              {field.presentPawns.map((pawn, index) => (
-                <div
-                  key={`${index}_${pawn}`}
-                  className="pawn"
-                  style={{
-                    backgroundColor: getPawnColor(field.presentPawns[0]),
-                    cursor: getCursorStyle(),
-                    top: index * 5,
-                    left: index * 5,
-                  }}
-                  onClick={() => {
-                    if (
-                      getPlayerIdByPawnId(field.presentPawns[0]) ===
-                      activePlayer
-                    ) {
-                      handlePawnClick(field);
-                    }
-                  }}
-                >
-                  {pawn}
-                </div>
-              ))}
+              {field.presentPawns.map((pawn, index) => {
+                // tu se to wywołaj na podstawie pionka
+                // i wyloguj czy git
+                return (
+                  <div
+                    key={`${index}_${pawn}`}
+                    className="pawn"
+                    style={{
+                      backgroundColor: getPawnColor(field.presentPawns[0]),
+                      cursor: getCursorStyle(),
+                      top: index * 5,
+                      left: index * 5,
+                    }}
+                    onClick={() => {
+                      if (
+                        getPlayerIdByPawnId(field.presentPawns[0]) ===
+                        activePlayer
+                      ) {
+                        handlePawnClick(field);
+                      }
+                    }}
+                  >
+                    {pawn}
+                  </div>
+                );
+              })}
             </div>
           </div>
         );

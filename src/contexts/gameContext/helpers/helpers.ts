@@ -6,8 +6,7 @@ import {
 import { Field } from "../../../components/board/data/types/fieldsTypes";
 import { Player } from "../../../components/playerSetupForm/data/types/playerTypes";
 import { PAWNS, Pawn } from "../../../components/board/data/pawns";
-import { FieldTypesEnum } from "../../../components/board/data/enums/fieldTypeEnum";
-import { start } from "repl";
+import { PLAYER_ROUTES } from "../../../components/board/data/playersRoutes";
 
 export const getStartFieldByPlayerId = (playerId: Player["id"]): Field => {
   const index = PLAYERS_START_FIELDS.findIndex((f) => f.startFor === playerId);
@@ -64,32 +63,67 @@ export const movePawnCertainNumberOfFields = (
   valueFromDice: number,
   fieldArray: Field[]
 ) => {
-  const indexBeforeDiceThrow = fieldArray.findIndex((f) => f.id === field.id);
+  // stąd
+  const playerId = getPlayerIdByPawnId(pawnId);
 
-  fieldArray[indexBeforeDiceThrow].presentPawns.splice(0, 1);
+  const playerIndexOnPlayerRoutes = playerId - 1;
 
-  const indexAfterDiceThrow = fieldArray.findIndex(
-    (f) => f.id === field.id + valueFromDice
+  const indexBeforeDiceThrowOnBoard = fieldArray.findIndex(
+    (f) => f.id === field.id
   );
 
-  const destinationField = fieldArray[indexAfterDiceThrow];
+  const indexBeforeDiceThrowOnPlayerRoutes = PLAYER_ROUTES[
+    playerIndexOnPlayerRoutes
+  ].findIndex((f) => f === field.id);
 
-  if (destinationField.presentPawns.length === 0) {
-    destinationField.presentPawns.push(pawnId);
+  const indexAfterDiceThrowOnPlayerRoutes =
+    indexBeforeDiceThrowOnPlayerRoutes + valueFromDice;
+
+  if (
+    indexAfterDiceThrowOnPlayerRoutes >
+    PLAYER_ROUTES[playerIndexOnPlayerRoutes].length - 1
+  )
+    return;
+
+  fieldArray[indexBeforeDiceThrowOnBoard].presentPawns.splice(0, 1); // przerzucić po sprawdzeniu
+
+  const indexOfDestinationFieldOnBoard = fieldArray.findIndex(
+    (f) =>
+      f.id ===
+      PLAYER_ROUTES[playerIndexOnPlayerRoutes][
+        indexAfterDiceThrowOnPlayerRoutes
+      ]
+  );
+  //dotąd
+  //i zwrócić wartość dla destinationFieldOnBoard
+  //rozważyć zwrócenie undefined jeśli
+  /**
+   *   if (
+    indexAfterDiceThrowOnPlayerRoutes >
+    PLAYER_ROUTES[playerIndexOnPlayerRoutes].length - 1
+  )
+    return undefined
+   * 
+    i wtedy cała funkcja albo może zwrócić Field albo undefined
+   */
+
+  const destinationFieldOnBoard = fieldArray[indexOfDestinationFieldOnBoard];
+
+  if (destinationFieldOnBoard.presentPawns.length === 0) {
+    destinationFieldOnBoard.presentPawns.push(pawnId);
   } else {
     if (
-      // <=============== JEŻELI WBIJA PION TEGO SAMEGO GRACZA
       getPlayerIdByPawnId(pawnId) ===
-      getPlayerIdByPawnId(destinationField.presentPawns[0])
+      getPlayerIdByPawnId(destinationFieldOnBoard.presentPawns[0])
     ) {
-      destinationField.presentPawns.push(pawnId);
+      destinationFieldOnBoard.presentPawns.push(pawnId);
     } else {
-      sentPawnsBackToBase(destinationField.presentPawns);
-      destinationField.presentPawns.splice(
+      sentPawnsBackToBase(destinationFieldOnBoard.presentPawns);
+      destinationFieldOnBoard.presentPawns.splice(
         0,
-        destinationField.presentPawns.length
+        destinationFieldOnBoard.presentPawns.length
       );
-      destinationField.presentPawns.push(pawnId);
+      destinationFieldOnBoard.presentPawns.push(pawnId);
     }
   }
 };

@@ -1,3 +1,4 @@
+import { Player } from "../../playerSetupForm/data/types/playerTypes";
 import {
   PLAYER1_START_FIELD,
   PLAYER2_START_FIELD,
@@ -9,9 +10,9 @@ import {
   PLAYER4_FINISH_FIELDS,
 } from "./fields";
 
-export const PLAYER_ROUTES = {
-  1: [
-    PLAYER1_START_FIELD,
+export const PLAYER_ROUTES: number[][] = [
+  [
+    PLAYER1_START_FIELD.id,
     2,
     3,
     4,
@@ -51,10 +52,10 @@ export const PLAYER_ROUTES = {
     38,
     39,
     40,
-    ...PLAYER1_FINISH_FIELDS,
+    ...PLAYER1_FINISH_FIELDS.map((field) => field.id),
   ],
-  2: [
-    PLAYER2_START_FIELD,
+  [
+    PLAYER2_START_FIELD.id,
     12,
     13,
     14,
@@ -94,10 +95,10 @@ export const PLAYER_ROUTES = {
     8,
     9,
     10,
-    ...PLAYER2_FINISH_FIELDS,
+    ...PLAYER2_FINISH_FIELDS.map((field) => field.id),
   ],
-  3: [
-    PLAYER3_START_FIELD,
+  [
+    PLAYER3_START_FIELD.id,
     22,
     23,
     24,
@@ -137,10 +138,10 @@ export const PLAYER_ROUTES = {
     18,
     19,
     20,
-    ...PLAYER3_FINISH_FIELDS,
+    ...PLAYER3_FINISH_FIELDS.map((field) => field.id),
   ],
-  4: [
-    PLAYER4_START_FIELD,
+  [
+    PLAYER4_START_FIELD.id,
     32,
     33,
     34,
@@ -180,6 +181,6 @@ export const PLAYER_ROUTES = {
     28,
     29,
     30,
-    ...PLAYER4_FINISH_FIELDS,
+    ...PLAYER4_FINISH_FIELDS.map((field) => field.id),
   ],
-} as const;
+];

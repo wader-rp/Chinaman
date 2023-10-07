@@ -1,0 +1,1040 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App test suite renders App component 1`] = `
+<body>
+  <div>
+    <div
+      class="playersSetup-page"
+    >
+      <h1
+        class="header"
+      >
+        Please choose as you wish: 
+      </h1>
+      <div
+        class="playersSetup-forms"
+      >
+        <div
+          class="playerSetup-form"
+        >
+          <h2
+            class="playerSetup-title"
+          >
+            Are you a human ?
+          </h2>
+          <select
+            class="playerSetup-isHuman-select"
+            id="isHuman"
+            name="isHuman"
+          >
+            <option
+              value="pc"
+            >
+              No, let my computer play
+            </option>
+            <option
+              value="human"
+            >
+              Yes!
+            </option>
+          </select>
+        </div>
+        <div
+          class="playerSetup-form"
+        >
+          <h2
+            class="playerSetup-title"
+          >
+            Are you a human ?
+          </h2>
+          <select
+            class="playerSetup-isHuman-select"
+            id="isHuman"
+            name="isHuman"
+          >
+            <option
+              value="pc"
+            >
+              No, let my computer play
+            </option>
+            <option
+              value="human"
+            >
+              Yes!
+            </option>
+          </select>
+        </div>
+        <div
+          class="playerSetup-form"
+        >
+          <h2
+            class="playerSetup-title"
+          >
+            Are you a human ?
+          </h2>
+          <select
+            class="playerSetup-isHuman-select"
+            id="isHuman"
+            name="isHuman"
+          >
+            <option
+              value="pc"
+            >
+              No, let my computer play
+            </option>
+            <option
+              value="human"
+            >
+              Yes!
+            </option>
+          </select>
+        </div>
+        <div
+          class="playerSetup-form"
+        >
+          <h2
+            class="playerSetup-title"
+          >
+            Are you a human ?
+          </h2>
+          <select
+            class="playerSetup-isHuman-select"
+            id="isHuman"
+            name="isHuman"
+          >
+            <option
+              value="pc"
+            >
+              No, let my computer play
+            </option>
+            <option
+              value="human"
+            >
+              Yes!
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div
+      class="gameBoard-container"
+    >
+      <div
+        class="board"
+      >
+        <div
+          class="fields-container"
+        >
+          <span>
+            Now it's Tony turn
+          </span>
+          <div
+            class="value-from-dice-wrapper"
+            style="top: 320px; left: 320px;"
+          >
+            <div
+              class="value-from-dice"
+            >
+              6
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 0px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1001
+              <div
+                class="pawn"
+                style="background-color: green; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p1_1
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 64px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1002
+              <div
+                class="pawn"
+                style="background-color: green; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p1_2
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 0px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1003
+              <div
+                class="pawn"
+                style="background-color: green; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p1_3
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 64px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1004
+              <div
+                class="pawn"
+                style="background-color: green; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p1_4
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 576px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2001
+              <div
+                class="pawn"
+                style="background-color: red; top: 0px; left: 0px;"
+              >
+                p2_1
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 640px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2002
+              <div
+                class="pawn"
+                style="background-color: red; top: 0px; left: 0px;"
+              >
+                p2_2
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 576px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2003
+              <div
+                class="pawn"
+                style="background-color: red; top: 0px; left: 0px;"
+              >
+                p2_3
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 640px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2004
+              <div
+                class="pawn"
+                style="background-color: red; top: 0px; left: 0px;"
+              >
+                p2_4
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 576px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3001
+              <div
+                class="pawn"
+                style="background-color: blue; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p3_1
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 640px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3002
+              <div
+                class="pawn"
+                style="background-color: blue; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p3_2
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 576px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3003
+              <div
+                class="pawn"
+                style="background-color: blue; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p3_3
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 640px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3004
+              <div
+                class="pawn"
+                style="background-color: blue; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p3_4
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 0px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4001
+              <div
+                class="pawn"
+                style="background-color: yellow; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p4_1
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 64px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4002
+              <div
+                class="pawn"
+                style="background-color: yellow; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p4_2
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 0px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4003
+              <div
+                class="pawn"
+                style="background-color: yellow; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p4_3
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 64px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4004
+              <div
+                class="pawn"
+                style="background-color: yellow; cursor: not-allowed; top: 0px; left: 0px;"
+              >
+                p4_4
+              </div>
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 0px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 384px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              11
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 640px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              21
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 256px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              31
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 64px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1005
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 128px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1006
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 192px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1007
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 256px; border-color: green;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              1008
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 320px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2005
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 128px; left: 320px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2006
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 192px; left: 320px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2007
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 320px; border-color: red;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2008
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 576px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3005
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 512px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3006
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 448px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3007
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 384px; border-color: blue;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3008
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 320px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4005
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 512px; left: 320px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4006
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 448px; left: 320px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4007
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 320px; border-color: yellow;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4008
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 64px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              2
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 128px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              3
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 192px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              4
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              5
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 192px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              6
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 128px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              7
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              8
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              9
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 0px; left: 320px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              10
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 64px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              12
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 128px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              13
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 192px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              14
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              15
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 448px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              16
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 512px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              17
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 576px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              18
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 256px; left: 640px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              19
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 640px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              20
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 576px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              22
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 512px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              23
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 448px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              24
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              25
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 448px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              26
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 512px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              27
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              28
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 384px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              29
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 640px; left: 320px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              30
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 576px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              32
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 512px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              33
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 448px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              34
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 256px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              35
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 192px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              36
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 128px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              37
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 64px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              38
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 384px; left: 0px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              39
+            </div>
+          </div>
+          <div
+            class="singleField"
+            style="width: 64px; height: 64px; top: 320px; left: 0px; border-color: black;"
+          >
+            <div
+              class="field-wrapper"
+            >
+              40
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="playerPanels"
+      >
+        <div
+          class="playerPanel"
+        >
+          <img
+            alt="avatar"
+            class="playerPanel-avatar"
+            src=""
+          />
+          <span
+            class="player-name"
+          >
+            Bob
+          </span>
+          <span
+            class="player-class"
+          />
+        </div>
+        <div
+          class="playerPanel"
+        >
+          <img
+            alt="avatar"
+            class="playerPanel-avatar"
+            src=""
+          />
+          <span
+            class="player-name"
+          >
+            Tony
+          </span>
+          <span
+            class="player-class"
+          />
+          <button
+            class="dice-button"
+          >
+             
+            ROLL
+          </button>
+        </div>
+        <div
+          class="playerPanel"
+        >
+          <img
+            alt="avatar"
+            class="playerPanel-avatar"
+            src=""
+          />
+          <span
+            class="player-name"
+          >
+            Jamal
+          </span>
+          <span
+            class="player-class"
+          />
+        </div>
+        <div
+          class="playerPanel"
+        >
+          <img
+            alt="avatar"
+            class="playerPanel-avatar"
+            src=""
+          />
+          <span
+            class="player-name"
+          >
+            Robert
+          </span>
+          <span
+            class="player-class"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
