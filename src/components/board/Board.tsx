@@ -10,6 +10,8 @@ import {
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
+import { getDestinationForPawnAfterDiceThrow } from "../../contexts/gameContext/helpers/helpers2";
+import { PLAYER_ROUTES } from "./data/playersRoutes";
 
 export const Board = () => {
   const size = useBoardSize();
@@ -56,7 +58,14 @@ export const Board = () => {
         const getCursorStyle = () => {
           if (
             getPlayerIdByPawnId(field.presentPawns[0]) !== activePlayer ||
-            valueFromDiceRoll === undefined
+            valueFromDiceRoll === undefined ||
+            getDestinationForPawnAfterDiceThrow(
+              field.presentPawns[0],
+              PLAYER_ROUTES,
+              field,
+              fieldStatus,
+              valueFromDiceRoll
+            ) === undefined
           )
             return "not-allowed";
         };
