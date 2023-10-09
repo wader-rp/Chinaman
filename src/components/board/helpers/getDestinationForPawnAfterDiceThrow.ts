@@ -1,6 +1,10 @@
-import { Pawn } from "../../../components/board/data/pawns";
-import { getPlayerIdByPawnId } from "./helpers";
-import { Field } from "../../../components/board/data/types/fieldsTypes";
+import { Pawn } from "../data/pawns";
+import {
+  getPlayerIdByPawnId,
+  getStartFieldByPlayerId,
+} from "../../../contexts/gameContext/helpers/helpers";
+import { Field } from "../data/types/fieldsTypes";
+import { FieldTypesEnum } from "../data/enums/fieldTypeEnum";
 
 export const getDestinationForPawnAfterDiceThrow = (
   pawnId: Pawn["id"],
@@ -9,6 +13,7 @@ export const getDestinationForPawnAfterDiceThrow = (
   fieldArray: Field[],
   valueFromDice: number
 ): Field | undefined => {
+  
   const playerId = getPlayerIdByPawnId(pawnId);
 
   const playerIndexOnPlayerRoutes = playerId - 1;
@@ -28,9 +33,18 @@ export const getDestinationForPawnAfterDiceThrow = (
       ]
   );
 
+  if (field.fieldType === FieldTypesEnum.BASE) {
+    const startFieldId = getStartFieldByPlayerId(playerId).id;
+    const startFieldIndex = fieldArray.findIndex((f) => f.id === startFieldId);
+    return fieldArray[startFieldIndex];
+  }
+
   if (
     indexAfterDiceThrowOnPlayerRoutes >
-    PLAYER_ROUTES[playerIndexOnPlayerRoutes].length - 1
+      PLAYER_ROUTES[playerIndexOnPlayerRoutes].length - 1 ||
+    (fieldArray[indexOfDestinationFieldOnBoard].fieldType ===
+      FieldTypesEnum.FINISH &&
+      fieldArray[indexOfDestinationFieldOnBoard].presentPawns.length > 0)
   ) {
     return undefined;
   } else {

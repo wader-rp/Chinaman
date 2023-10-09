@@ -1,15 +1,12 @@
 import {
-  PLAYER1_BASE_FIELDS,
   PLAYERS_BASE_FIELDS,
   PLAYERS_START_FIELDS,
 } from "../../../components/board/data/fields";
 import { Field } from "../../../components/board/data/types/fieldsTypes";
 import { Player } from "../../../components/playerSetupForm/data/types/playerTypes";
 import { PAWNS, Pawn } from "../../../components/board/data/pawns";
-import { FieldTypesEnum } from "../../../components/board/data/enums/fieldTypeEnum";
-import { start } from "repl";
 import { PLAYER_ROUTES } from "../../../components/board/data/playersRoutes";
-import { getDestinationForPawnAfterDiceThrow } from "./getDestinationForPawnAfterDiceThrow";
+import { getDestinationForPawnAfterDiceThrow } from "../../../components/board/helpers/getDestinationForPawnAfterDiceThrow";
 
 export const getStartFieldByPlayerId = (playerId: Player["id"]): Field => {
   const index = PLAYERS_START_FIELDS.findIndex((f) => f.startFor === playerId);
@@ -100,6 +97,7 @@ export const movePawnCertainNumberOfFields = (
           destinationFieldOnBoard.presentPawns.length,
           pawnId
         );
+        fieldArray[indexBeforeDiceThrowOnBoard].presentPawns.splice(0, 1);
       }
     }
   }
@@ -123,14 +121,4 @@ export const diceRoll = (): number => {
   const max = 6;
 
   return Math.round(Math.random() * (max - min) + min);
-};
-
-export const activatePawnsForPlayer = (
-  field: Field,
-  activePlayer: Player["id"],
-  handlePawnClick: (field: Field) => void
-) => {
-  if (getPlayerIdByPawnId(field.presentPawns[0]) === activePlayer) {
-    handlePawnClick(field);
-  }
 };

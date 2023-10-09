@@ -10,11 +10,16 @@ import {
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
-import { getDestinationForPawnAfterDiceThrow } from "../../contexts/gameContext/helpers/getDestinationForPawnAfterDiceThrow";
+import { getDestinationForPawnAfterDiceThrow } from "./helpers/getDestinationForPawnAfterDiceThrow";
 import { PLAYER_ROUTES } from "./data/playersRoutes";
+import { useState } from "react";
+import { getPermissionToMoveAPawn } from "./helpers/getPermissionToMoveAPawn";
 
 export const Board = () => {
   const size = useBoardSize();
+  const [destinationIndicatorId, setDestinationIndicatorId] = useState<
+    number | undefined
+  >();
   const {
     setFieldStatus,
     fieldStatus,
@@ -41,6 +46,7 @@ export const Board = () => {
     }
 
     setFieldStatus(fieldStatusCopy);
+    setDestinationIndicatorId(undefined);
     setNextActivePlayer();
     console.log(fieldStatusCopy);
   };
@@ -52,28 +58,36 @@ export const Board = () => {
         className="value-from-dice-wrapper"
         style={{ top: size * 5, left: size * 5 }}
       >
-        <div className="value-from-dice">{valueFromDiceRoll}</div>
+        <div className="value-from-dice">
+          {valueFromDiceRoll}
+          {`${destinationIndicatorId}`}
+        </div>
       </div>
       {fieldStatus.map((field) => {
-        const getCursorStyle = () => {
-          if (
-            getPlayerIdByPawnId(field.presentPawns[0]) !== activePlayer ||
-            valueFromDiceRoll === undefined ||
-            getDestinationForPawnAfterDiceThrow(
-              field.presentPawns[0],
-              PLAYER_ROUTES,
-              field,
-              fieldStatus,
-              valueFromDiceRoll
-            ) === undefined
-          )
-            return "not-allowed";
+        const permissionToMove =
+          !!field.presentPawns.length ??
+          getPermissionToMoveAPawn(
+            field,
+            valueFromDiceRoll,
+            fieldStatus,
+            activePlayer
+          );
+
+        const handleOnMouseEnter = () => {
+          const destinationForPawnAfterDiceThrow = valueFromDiceRoll
+            ? getDestinationForPawnAfterDiceThrow(
+                field.presentPawns[0],
+                PLAYER_ROUTES,
+                field,
+                fieldStatus,
+                valueFromDiceRoll
+              )
+            : undefined;
+
+          setDestinationIndicatorId(destinationForPawnAfterDiceThrow?.id);
         };
 
-        // const getPawnOffset = ():  => {
-        //   if ()
-        // }
-
+        console.log(destinationIndicatorId);
         return (
           <div
             key={field.id}
@@ -84,30 +98,27 @@ export const Board = () => {
               top: size * field.position.y,
               left: size * field.position.x,
               borderColor: fieldColors(field.id),
+              backgroundColor:
+                field.id === destinationIndicatorId ? "#008080" : "unset",
             }}
           >
             <div className="field-wrapper">
               {field.id}
               {field.presentPawns.map((pawn, index) => {
-                // tu se to wywołaj na podstawie pionka
-                // i wyloguj czy git
                 return (
                   <div
                     key={`${index}_${pawn}`}
                     className="pawn"
                     style={{
                       backgroundColor: getPawnColor(field.presentPawns[0]),
-                      cursor: getCursorStyle(),
+                      cursor: permissionToMove ? undefined : "not-allowed",
                       top: index * 5,
                       left: index * 5,
                     }}
+                    onMouseEnter={handleOnMouseEnter}
+                    onMouseLeave={() => setDestinationIndicatorId(undefined)}
                     onClick={() => {
-                      if (
-                        getPlayerIdByPawnId(field.presentPawns[0]) ===
-                        activePlayer
-                      ) {
-                        handlePawnClick(field);
-                      }
+                      permissionToMove ? handlePawnClick(field) : undefined;
                     }}
                   >
                     {pawn}
