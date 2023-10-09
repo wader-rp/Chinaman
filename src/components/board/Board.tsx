@@ -10,7 +10,7 @@ import {
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
-import { getDestinationForPawnAfterDiceThrow } from "../../contexts/gameContext/helpers/helpers2";
+import { getDestinationForPawnAfterDiceThrow } from "../../contexts/gameContext/helpers/getDestinationForPawnAfterDiceThrow";
 import { PLAYER_ROUTES } from "./data/playersRoutes";
 
 export const Board = () => {

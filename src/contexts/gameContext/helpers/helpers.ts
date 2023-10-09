@@ -9,7 +9,7 @@ import { PAWNS, Pawn } from "../../../components/board/data/pawns";
 import { FieldTypesEnum } from "../../../components/board/data/enums/fieldTypeEnum";
 import { start } from "repl";
 import { PLAYER_ROUTES } from "../../../components/board/data/playersRoutes";
-import { getDestinationForPawnAfterDiceThrow } from "./helpers2";
+import { getDestinationForPawnAfterDiceThrow } from "./getDestinationForPawnAfterDiceThrow";
 
 export const getStartFieldByPlayerId = (playerId: Player["id"]): Field => {
   const index = PLAYERS_START_FIELDS.findIndex((f) => f.startFor === playerId);
