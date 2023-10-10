@@ -1,8 +1,9 @@
-import React, { FC } from "react";
+import { FC } from "react";
 
 import "./playerPanels.css";
 import { Player } from "../playerSetupForm/data/types/playerTypes";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
+import { Dice } from "../dice_roll/Dice";
 
 export const PlayerPanel: FC<Player> = ({
   playerName,
@@ -10,7 +11,7 @@ export const PlayerPanel: FC<Player> = ({
   playerAvatar,
   id,
 }) => {
-  const { getValueFromDiceRoll, activePlayer } = useGameContext();
+  const { activePlayer } = useGameContext();
 
   return (
     <div className="playerPanel">
@@ -18,12 +19,7 @@ export const PlayerPanel: FC<Player> = ({
       <span className="player-name">{playerName}</span>
       <span className="player-class">{playerClass}</span>
 
-      {id === activePlayer && (
-        <button className="dice-button" onClick={getValueFromDiceRoll}>
-          {" "}
-          ROLL
-        </button>
-      )}
+      <div>{id === activePlayer && <Dice />}</div>
     </div>
   );
 };

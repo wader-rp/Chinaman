@@ -22,7 +22,7 @@ export const PlayerSetupForm = ({ id }: playerProps) => {
       <h2 className="playerSetup-title">Are you a human ?</h2>
       <select
         name="isHuman"
-        id="isHuman"
+        id={playerName}
         className="playerSetup-isHuman-select"
         onChange={onOptionChange}
       >

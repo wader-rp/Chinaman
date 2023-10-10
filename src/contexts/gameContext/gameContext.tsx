@@ -3,7 +3,6 @@ import React, { ReactNode, createContext, useContext, useState } from "react";
 import { Field } from "../../components/board/data/types/fieldsTypes";
 import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
 import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
-import { diceRoll } from "./helpers/helpers";
 
 type GameContextProviderProps = {
   children: ReactNode;
@@ -20,11 +19,12 @@ type GameContextType = {
     newValue: Player[P]
   ) => void;
   getPlayerById: (id: Player["id"]) => Player;
-  getValueFromDiceRoll: () => void;
-  valueFromDiceRoll: number | undefined;
+  valueFromDiceRoll: number;
+  //handleRollClick: () => void;
   activePlayer: Player["id"];
   setActivePlayer: React.Dispatch<React.SetStateAction<Player["id"]>>;
   setNextActivePlayer: () => void;
+  setValueFromDiceRoll: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export const GameContext = createContext<GameContextType>(
@@ -34,7 +34,7 @@ export const GameContext = createContext<GameContextType>(
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [fieldStatus, setFieldStatus] = useState(INITIAL_FIELDS);
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
-  const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(6);
+  const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(1);
   const [activePlayer, setActivePlayer] = useState<Player["id"]>(2);
 
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
@@ -63,14 +63,8 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     return players[playerIndex];
   };
 
-  const getValueFromDiceRoll = () => {
-    const value = diceRoll();
-    setValueFromDiceRoll(value);
-  };
-
   const setNextActivePlayer = () =>
     setActivePlayer((prev) => (prev < 4 ? prev + 1 : 1));
-
   return (
     <GameContext.Provider
       value={{
@@ -80,11 +74,12 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         setPlayers,
         changePlayerProperty,
         getPlayerById,
-        getValueFromDiceRoll,
         valueFromDiceRoll,
         activePlayer,
         setActivePlayer,
         setNextActivePlayer,
+        setValueFromDiceRoll,
+        //handleRollClick,
       }}
     >
       {children}

@@ -5,7 +5,6 @@ import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import {
   dispatchPawnFromBaseField,
-  getPlayerIdByPawnId,
   movePawnCertainNumberOfFields,
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
@@ -50,7 +49,7 @@ export const Board = () => {
     setNextActivePlayer();
     console.log(fieldStatusCopy);
   };
-
+  console.log("refresj");
   return (
     <div className="fields-container">
       <span>{`Now it's ${players[activePlayer - 1].playerName} turn`}</span>
@@ -87,7 +86,6 @@ export const Board = () => {
           setDestinationIndicatorId(destinationForPawnAfterDiceThrow?.id);
         };
 
-        console.log(destinationIndicatorId);
         return (
           <div
             key={field.id}
