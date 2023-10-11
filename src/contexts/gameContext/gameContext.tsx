@@ -1,5 +1,11 @@
 import { INITIAL_FIELDS } from "../../components/board/data/fields";
-import React, { ReactNode, createContext, useContext, useState } from "react";
+import React, {
+  ReactNode,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { Field } from "../../components/board/data/types/fieldsTypes";
 import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
 import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
@@ -21,21 +27,34 @@ type GameContextType = {
   getPlayerById: (id: Player["id"]) => Player;
   valueFromDiceRoll: number;
   //handleRollClick: () => void;
-  activePlayer: Player["id"];
-  setActivePlayer: React.Dispatch<React.SetStateAction<Player["id"]>>;
+  roundState: Round;
   setNextActivePlayer: () => void;
   setValueFromDiceRoll: React.Dispatch<React.SetStateAction<number>>;
+  // setRoundState: React.Dispatch<React.SetStateAction<Round>>;
+  rollCountIncrement: () => void;
 };
 
 export const GameContext = createContext<GameContextType>(
   {} as GameContextType
 );
 
+export type Round = {
+  activePlayer: Player["id"];
+  rollCounter: number;
+};
+export const INITIAL_ROUND_STATE = {
+  activePlayer: 1,
+  rollCounter: 0,
+};
+
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [fieldStatus, setFieldStatus] = useState(INITIAL_FIELDS);
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
   const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(1);
-  const [activePlayer, setActivePlayer] = useState<Player["id"]>(2);
+  const [roundState, setRoundState] = useState<Round>(INITIAL_ROUND_STATE);
+  useEffect(() => {
+    if (roundState.rollCounter > 2) return setNextActivePlayer();
+  }, [roundState.rollCounter]);
 
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
     id: Player["id"],
@@ -63,8 +82,18 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     return players[playerIndex];
   };
 
-  const setNextActivePlayer = () =>
-    setActivePlayer((prev) => (prev < 4 ? prev + 1 : 1));
+  const setNextActivePlayer = () => {
+    setRoundState((prev) => ({
+      ...prev,
+      activePlayer: prev.activePlayer < 4 ? prev.activePlayer + 1 : 1,
+      rollCounter: 0,
+    }));
+  };
+
+  const rollCountIncrement = () => {
+    setRoundState((prev) => ({ ...prev, rollCounter: prev.rollCounter + 1 }));
+  };
+  console.log(`${roundState.rollCounter} counter , ${roundState.activePlayer}`);
   return (
     <GameContext.Provider
       value={{
@@ -75,11 +104,11 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         changePlayerProperty,
         getPlayerById,
         valueFromDiceRoll,
-        activePlayer,
-        setActivePlayer,
+        roundState,
         setNextActivePlayer,
         setValueFromDiceRoll,
-        //handleRollClick,
+
+        rollCountIncrement,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useEffect, ChangeEvent } from "react";
+import { ChangeEvent } from "react";
 
 import "./playerSetupForm.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";

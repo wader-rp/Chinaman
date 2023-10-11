@@ -11,7 +11,9 @@ export const PlayerPanel: FC<Player> = ({
   playerAvatar,
   id,
 }) => {
-  const { activePlayer } = useGameContext();
+  const {
+    roundState: { activePlayer },
+  } = useGameContext();
 
   return (
     <div className="playerPanel">

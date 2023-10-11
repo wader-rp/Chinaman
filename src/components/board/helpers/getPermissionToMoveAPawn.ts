@@ -9,7 +9,7 @@ export const getPermissionToMoveAPawn = (
   valueFromDiceRoll: number | undefined,
   fieldStatus: Field[],
   activePlayer: number
-) => {
+): boolean => {
   const destinationForPawnAfterDiceThrow = valueFromDiceRoll
     ? getDestinationForPawnAfterDiceThrow(
         field.presentPawns[0],
@@ -19,7 +19,7 @@ export const getPermissionToMoveAPawn = (
         valueFromDiceRoll
       )
     : undefined;
-      
+
   return !(
     getPlayerIdByPawnId(field.presentPawns[0]) !== activePlayer ||
     valueFromDiceRoll === undefined ||

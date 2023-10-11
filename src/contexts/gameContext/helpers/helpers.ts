@@ -81,8 +81,8 @@ export const movePawnCertainNumberOfFields = (
 
   if (destinationFieldOnBoard) {
     if (destinationFieldOnBoard.presentPawns.length === 0) {
-      destinationFieldOnBoard.presentPawns.push(pawnId);
       fieldArray[indexBeforeDiceThrowOnBoard].presentPawns.splice(0, 1);
+      destinationFieldOnBoard.presentPawns.push(pawnId);
     } else {
       if (
         getPlayerIdByPawnId(pawnId) ===
@@ -115,4 +115,3 @@ export const sendPawnsBackToBase = (
     ).presentPawns.push(p)
   );
 };
-

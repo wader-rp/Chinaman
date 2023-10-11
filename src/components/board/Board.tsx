@@ -5,6 +5,7 @@ import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import {
   dispatchPawnFromBaseField,
+  getPlayerIdByPawnId,
   movePawnCertainNumberOfFields,
 } from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
@@ -13,6 +14,7 @@ import { getDestinationForPawnAfterDiceThrow } from "./helpers/getDestinationFor
 import { PLAYER_ROUTES } from "./data/playersRoutes";
 import { useState } from "react";
 import { getPermissionToMoveAPawn } from "./helpers/getPermissionToMoveAPawn";
+import { act } from "react-dom/test-utils";
 
 export const Board = () => {
   const size = useBoardSize();
@@ -23,9 +25,8 @@ export const Board = () => {
     setFieldStatus,
     fieldStatus,
     valueFromDiceRoll,
-    activePlayer,
     players,
-    setNextActivePlayer,
+    roundState: { activePlayer },
   } = useGameContext();
 
   const handlePawnClick = (field: Field) => {
@@ -36,20 +37,21 @@ export const Board = () => {
     }
 
     if (field.fieldType !== FieldTypesEnum.BASE) {
-      movePawnCertainNumberOfFields(
-        field.presentPawns[0],
-        field,
-        valueFromDiceRoll as number,
-        fieldStatusCopy
-      );
+      if (valueFromDiceRoll === 6) {
+        movePawnCertainNumberOfFields(
+          field.presentPawns[0],
+          field,
+          valueFromDiceRoll as number,
+          fieldStatusCopy
+        );
+      }
     }
 
     setFieldStatus(fieldStatusCopy);
     setDestinationIndicatorId(undefined);
-    setNextActivePlayer();
     console.log(fieldStatusCopy);
   };
-  console.log("refresj");
+
   return (
     <div className="fields-container">
       <span>{`Now it's ${players[activePlayer - 1].playerName} turn`}</span>
@@ -63,25 +65,28 @@ export const Board = () => {
         </div>
       </div>
       {fieldStatus.map((field) => {
-        const permissionToMove =
-          !!field.presentPawns.length ??
-          getPermissionToMoveAPawn(
-            field,
-            valueFromDiceRoll,
-            fieldStatus,
-            activePlayer
-          );
+        const permissionToMove = field.presentPawns.length
+          ? getPermissionToMoveAPawn(
+              field,
+              valueFromDiceRoll,
+              fieldStatus,
+              activePlayer
+            )
+          : false;
 
         const handleOnMouseEnter = () => {
-          const destinationForPawnAfterDiceThrow = valueFromDiceRoll
-            ? getDestinationForPawnAfterDiceThrow(
-                field.presentPawns[0],
-                PLAYER_ROUTES,
-                field,
-                fieldStatus,
-                valueFromDiceRoll
-              )
-            : undefined;
+          const playerId = getPlayerIdByPawnId(field.presentPawns[0]);
+          console.log(playerId, activePlayer);
+          const destinationForPawnAfterDiceThrow =
+            valueFromDiceRoll && activePlayer === playerId
+              ? getDestinationForPawnAfterDiceThrow(
+                  field.presentPawns[0],
+                  PLAYER_ROUTES,
+                  field,
+                  fieldStatus,
+                  valueFromDiceRoll
+                )
+              : undefined;
 
           setDestinationIndicatorId(destinationForPawnAfterDiceThrow?.id);
         };

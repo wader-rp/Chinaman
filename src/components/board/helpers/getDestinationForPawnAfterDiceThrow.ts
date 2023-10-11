@@ -13,7 +13,6 @@ export const getDestinationForPawnAfterDiceThrow = (
   fieldArray: Field[],
   valueFromDice: number
 ): Field | undefined => {
-  
   const playerId = getPlayerIdByPawnId(pawnId);
 
   const playerIndexOnPlayerRoutes = playerId - 1;
