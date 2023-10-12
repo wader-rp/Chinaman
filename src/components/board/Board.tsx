@@ -14,7 +14,6 @@ import { getDestinationForPawnAfterDiceThrow } from "./helpers/getDestinationFor
 import { PLAYER_ROUTES } from "./data/playersRoutes";
 import { useState } from "react";
 import { getPermissionToMoveAPawn } from "./helpers/getPermissionToMoveAPawn";
-import { act } from "react-dom/test-utils";
 
 export const Board = () => {
   const size = useBoardSize();
@@ -26,7 +25,9 @@ export const Board = () => {
     fieldStatus,
     valueFromDiceRoll,
     players,
-    roundState: { activePlayer },
+    moveCountIncrement,
+    roundState,
+    isRolledToFalse,
   } = useGameContext();
 
   const handlePawnClick = (field: Field) => {
@@ -37,24 +38,24 @@ export const Board = () => {
     }
 
     if (field.fieldType !== FieldTypesEnum.BASE) {
-      if (valueFromDiceRoll === 6) {
-        movePawnCertainNumberOfFields(
-          field.presentPawns[0],
-          field,
-          valueFromDiceRoll as number,
-          fieldStatusCopy
-        );
-      }
+      movePawnCertainNumberOfFields(
+        field.presentPawns[0],
+        field,
+        valueFromDiceRoll as number,
+        fieldStatusCopy
+      );
     }
-
+    moveCountIncrement();
+    isRolledToFalse();
     setFieldStatus(fieldStatusCopy);
     setDestinationIndicatorId(undefined);
-    console.log(fieldStatusCopy);
   };
 
   return (
     <div className="fields-container">
-      <span>{`Now it's ${players[activePlayer - 1].playerName} turn`}</span>
+      <span>{`Now it's ${
+        players[roundState.activePlayer - 1].playerName
+      } turn`}</span>
       <div
         className="value-from-dice-wrapper"
         style={{ top: size * 5, left: size * 5 }}
@@ -70,15 +71,14 @@ export const Board = () => {
               field,
               valueFromDiceRoll,
               fieldStatus,
-              activePlayer
+              roundState
             )
           : false;
 
         const handleOnMouseEnter = () => {
           const playerId = getPlayerIdByPawnId(field.presentPawns[0]);
-          console.log(playerId, activePlayer);
           const destinationForPawnAfterDiceThrow =
-            valueFromDiceRoll && activePlayer === playerId
+            valueFromDiceRoll && roundState.activePlayer === playerId
               ? getDestinationForPawnAfterDiceThrow(
                   field.presentPawns[0],
                   PLAYER_ROUTES,

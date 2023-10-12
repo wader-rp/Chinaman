@@ -5,8 +5,12 @@ import { useEffect, useState } from "react";
 import { diceRoll } from "./helpers/diceRoll";
 
 export const Dice = () => {
-  const { valueFromDiceRoll, setValueFromDiceRoll, rollCountIncrement } =
-    useGameContext();
+  const {
+    valueFromDiceRoll,
+    setValueFromDiceRoll,
+    rollCountIncrement,
+    isRolled,
+  } = useGameContext();
 
   const initialValue = valueFromDiceRoll;
 
@@ -26,6 +30,7 @@ export const Dice = () => {
           clearInterval(interval);
           setIsRolling(false);
           rollCountIncrement();
+          isRolled();
         }
       }, 150);
     }
