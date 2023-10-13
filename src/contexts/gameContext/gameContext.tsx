@@ -34,7 +34,7 @@ type GameContextType = {
   setNextActivePlayer: () => void;
   setValueFromDiceRoll: React.Dispatch<React.SetStateAction<number>>;
   rollCountIncrement: () => void;
-  moveCountIncrement: () => void;
+  moveCountDecrement: () => void;
   isRolled: () => void;
   isRolledToFalse: () => void;
 };
@@ -48,12 +48,14 @@ export type Round = {
   rollCount: number;
   moveCount: number;
   isDiceRolled: boolean;
+  permissionToMove: boolean;
 };
 export const INITIAL_ROUND_STATE = {
   activePlayer: 1,
   rollCount: 0,
-  moveCount: 0,
+  moveCount: 3,
   isDiceRolled: false,
+  permissionToMove: false,
 };
 
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
@@ -61,25 +63,24 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
   const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(6);
   const [roundState, setRoundState] = useState<Round>(INITIAL_ROUND_STATE);
+  const previousValueFromDiceRoll = usePrevious(valueFromDiceRoll);
 
   useEffect(() => {
     const isBaseFull = !areBaseFieldsOccupied(roundState.activePlayer);
 
     if (isBaseFull) {
-      if (roundState.rollCount === 3 && valueFromDiceRoll !== 6) {
-        return setNextActivePlayer();
-      }
+      if (roundState.rollCount === 3 && valueFromDiceRoll !== 6)
+        setNextActivePlayer();
     } else {
-      if (
-        roundState.rollCount > 3 &&
-        roundState.moveCount === 3 &&
-        valueFromDiceRoll !== 6
-      ) {
-        return setNextActivePlayer();
-      }
+      if (previousValueFromDiceRoll === 6 && valueFromDiceRoll !== 6)
+        setMoveCountToLast();
+      if (valueFromDiceRoll !== 6) setMoveCountToLast();
+      if (roundState.moveCount === 0) setNextActivePlayer();
     }
 
-    if (roundState.moveCount > 3) return setNextActivePlayer();
+    console.log(
+      `${previousValueFromDiceRoll}: previous     ,     ${valueFromDiceRoll}: present`
+    );
   }, [roundState.rollCount, roundState.moveCount]);
 
   const areBaseFieldsOccupied = (activePlayer: Player["id"]): boolean => {
@@ -123,7 +124,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
       ...prev,
       activePlayer: prev.activePlayer < 4 ? prev.activePlayer + 1 : 1,
       rollCount: 0,
-      moveCount: 0,
+      moveCount: 3,
       isDiceRolled: false,
     }));
   };
@@ -131,8 +132,11 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const rollCountIncrement = () => {
     setRoundState((prev) => ({ ...prev, rollCount: prev.rollCount + 1 }));
   };
-  const moveCountIncrement = () => {
-    setRoundState((prev) => ({ ...prev, moveCount: prev.moveCount + 1 }));
+  const moveCountDecrement = () => {
+    setRoundState((prev) => ({ ...prev, moveCount: prev.moveCount - 1 }));
+  };
+  const setMoveCountToLast = () => {
+    setRoundState((prev) => ({ ...prev, moveCount: 1 }));
   };
   const isRolled = () => {
     setRoundState((prev) => ({ ...prev, isDiceRolled: true }));
@@ -158,7 +162,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         setNextActivePlayer,
         setValueFromDiceRoll,
         rollCountIncrement,
-        moveCountIncrement,
+        moveCountDecrement,
         isRolled,
         isRolledToFalse,
       }}

@@ -25,7 +25,7 @@ export const Board = () => {
     fieldStatus,
     valueFromDiceRoll,
     players,
-    moveCountIncrement,
+    moveCountDecrement,
     roundState,
     isRolledToFalse,
   } = useGameContext();
@@ -44,8 +44,9 @@ export const Board = () => {
         valueFromDiceRoll as number,
         fieldStatusCopy
       );
+      moveCountDecrement();
     }
-    moveCountIncrement();
+
     isRolledToFalse();
     setFieldStatus(fieldStatusCopy);
     setDestinationIndicatorId(undefined);

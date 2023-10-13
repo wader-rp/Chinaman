@@ -33,9 +33,15 @@ export const getDestinationForPawnAfterDiceThrow = (
   );
 
   if (field.fieldType === FieldTypesEnum.BASE) {
-    const startFieldId = getStartFieldByPlayerId(playerId).id;
-    const startFieldIndex = fieldArray.findIndex((f) => f.id === startFieldId);
-    return fieldArray[startFieldIndex];
+    if (valueFromDice === 6) {
+      const startFieldId = getStartFieldByPlayerId(playerId).id;
+      const startFieldIndex = fieldArray.findIndex(
+        (f) => f.id === startFieldId
+      );
+      return fieldArray[startFieldIndex];
+    } else {
+      return undefined;
+    }
   }
 
   if (

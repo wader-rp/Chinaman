@@ -10,6 +10,7 @@ export const Dice = () => {
     setValueFromDiceRoll,
     rollCountIncrement,
     isRolled,
+    roundState,
   } = useGameContext();
 
   const initialValue = valueFromDiceRoll;
@@ -41,6 +42,8 @@ export const Dice = () => {
   }, [isRolling]);
 
   const handleRollClick = () => {
+    if (roundState.rollCount !== 6) 
+  {/*TODO USTAWIĆ ODPOWIEDNIO KRĘCENIE KOŚcią*/}
     setIsRolling(true);
   };
 
@@ -50,6 +53,9 @@ export const Dice = () => {
         src={diceNumbers[diceRollDisplay - 1].srcPath}
         onClick={handleRollClick}
         className="dice"
+        // style={{
+        //   cursor: roundState.isDiceRolled ? "not-allowed" : undefined,
+        // }}
       />
     </>
   );
