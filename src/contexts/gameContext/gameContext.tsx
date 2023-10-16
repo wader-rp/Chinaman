@@ -13,6 +13,8 @@ import { Field } from "../../components/board/data/types/fieldsTypes";
 import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
 import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
 import { usePrevious } from "../../hooks/usePreviousValue";
+import { areBaseFieldsOccupied } from "./helpers/helpers";
+import { getPermissionToMoveAPawn } from "../../components/board/helpers/getPermissionToMoveAPawn";
 
 type GameContextProviderProps = {
   children: ReactNode;
@@ -37,6 +39,7 @@ type GameContextType = {
   moveCountDecrement: () => void;
   isRolled: () => void;
   isRolledToFalse: () => void;
+  afterMove: () => void;
 };
 
 export const GameContext = createContext<GameContextType>(
@@ -61,37 +64,45 @@ export const INITIAL_ROUND_STATE = {
 export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [fieldStatus, setFieldStatus] = useState(INITIAL_FIELDS);
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
-  const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(6);
+  const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(3);
   const [roundState, setRoundState] = useState<Round>(INITIAL_ROUND_STATE);
   const previousValueFromDiceRoll = usePrevious(valueFromDiceRoll);
 
   useEffect(() => {
     const isBaseFull = !areBaseFieldsOccupied(roundState.activePlayer);
+    const permissionToMove = fieldStatus.map((f) => {
+      return f.presentPawns.length
+        ? getPermissionToMoveAPawn(
+            f,
+            valueFromDiceRoll,
+            fieldStatus,
+            roundState
+          )
+        : false;
+    });
+
+    const isPermittedToMove = permissionToMove.find((b) => b === true);
+
+    if (roundState.moveCount === 0) setNextActivePlayer();
 
     if (isBaseFull) {
-      if (roundState.rollCount === 3 && valueFromDiceRoll !== 6)
+      if (roundState.rollCount === 3 && valueFromDiceRoll !== 6) {
         setNextActivePlayer();
+      } else {
+        if (isPermittedToMove)
+          setRoundState((prev) => ({ ...prev, permissionToMove: true }));
+      }
     } else {
-      if (previousValueFromDiceRoll === 6 && valueFromDiceRoll !== 6)
-        setMoveCountToLast();
-      if (valueFromDiceRoll !== 6) setMoveCountToLast();
-      if (roundState.moveCount === 0) setNextActivePlayer();
+      if (isPermittedToMove) {
+        setRoundState((prev) => ({ ...prev, permissionToMove: true }));
+        if (previousValueFromDiceRoll === 6 && valueFromDiceRoll !== 6)
+          setMoveCountToLast();
+        if (valueFromDiceRoll !== 6) setMoveCountToLast();
+      }
     }
 
-    console.log(
-      `${previousValueFromDiceRoll}: previous     ,     ${valueFromDiceRoll}: present`
-    );
+    console.log(roundState.permissionToMove);
   }, [roundState.rollCount, roundState.moveCount]);
-
-  const areBaseFieldsOccupied = (activePlayer: Player["id"]): boolean => {
-    const activePlayerBaseFields = PLAYERS_BASE_FIELDS.filter(
-      (f) => f.baseFor === activePlayer
-    );
-    const isThereNoPawn = activePlayerBaseFields.find(
-      (f) => f.presentPawns.length === 0
-    );
-    return isThereNoPawn ? true : false;
-  };
 
   const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
     id: Player["id"],
@@ -144,6 +155,9 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const isRolledToFalse = () => {
     setRoundState((prev) => ({ ...prev, isDiceRolled: false }));
   };
+  const afterMove = () => {
+    setRoundState((prev) => ({ ...prev, permissionToMove: false }));
+  };
 
   console.log(
     `${roundState.rollCount} counter , ${roundState.activePlayer} activePlayer , ${roundState.moveCount} moveCOunt , ${roundState.isDiceRolled} isRolled`
@@ -165,6 +179,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         moveCountDecrement,
         isRolled,
         isRolledToFalse,
+        afterMove,
       }}
     >
       {children}

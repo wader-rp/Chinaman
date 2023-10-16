@@ -115,3 +115,10 @@ export const sendPawnsBackToBase = (
     ).presentPawns.push(p)
   );
 };
+
+export const areBaseFieldsOccupied = (activePlayer: Player["id"]): boolean => {
+  const activePlayerBaseFields = PLAYERS_BASE_FIELDS.filter(
+    (f) => f.baseFor === activePlayer
+  ).find((f) => f.presentPawns.length === 0);
+  return activePlayerBaseFields ? true : false;
+};

@@ -28,6 +28,7 @@ export const Board = () => {
     moveCountDecrement,
     roundState,
     isRolledToFalse,
+    afterMove,
   } = useGameContext();
 
   const handlePawnClick = (field: Field) => {
@@ -48,6 +49,7 @@ export const Board = () => {
     }
 
     isRolledToFalse();
+    afterMove();
     setFieldStatus(fieldStatusCopy);
     setDestinationIndicatorId(undefined);
   };

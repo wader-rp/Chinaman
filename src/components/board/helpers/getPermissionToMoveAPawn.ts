@@ -30,6 +30,7 @@ export const getPermissionToMoveAPawn = (
     destinationForPawnAfterDiceThrow.presentPawns.length > 0;
   const notProperValueToDeployFromBase =
     field.fieldType === FieldTypesEnum.BASE && valueFromDiceRoll !== 6;
+  const outOfRange = destinationForPawnAfterDiceThrow === undefined;
 
   const isRolled = !roundState.isDiceRolled;
 
@@ -39,6 +40,7 @@ export const getPermissionToMoveAPawn = (
     thereIsNoDestination ||
     finishIsFieldNotEmpty ||
     notProperValueToDeployFromBase ||
-    isRolled
+    isRolled ||
+    outOfRange
   );
 };
