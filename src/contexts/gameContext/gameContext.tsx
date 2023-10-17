@@ -22,19 +22,14 @@ type GameContextType = {
   players: Player[];
   setFieldStatus: React.Dispatch<React.SetStateAction<Field[]>>;
   setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
-  // changePlayerProperty: <P extends keyof Omit<Player, "id">>(
-  //   id: Player["id"],
-  //   property: P,
-  //   newValue: Player[P]
-  // ) => void;
   valueFromDiceRoll: number;
   roundState: Round;
   setNextActivePlayer: () => void;
   setValueFromDiceRoll: React.Dispatch<React.SetStateAction<number>>;
   rollCountIncrement: () => void;
   moveCountDecrement: () => void;
-  isRolled: () => void;
-  isRolledToFalse: () => void;
+  setIsRolled: (value: boolean) => void;
+
   afterMove: () => void;
 };
 
@@ -70,7 +65,6 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     );
   }, [roundState.rollCount, roundState.moveCount]);
 
-
   const setNextActivePlayer = () => {
     setRoundState((prev) => ({
       ...prev,
@@ -88,12 +82,10 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     setRoundState((prev) => ({ ...prev, moveCount: prev.moveCount - 1 }));
   };
 
-  const isRolled = () => {
-    setRoundState((prev) => ({ ...prev, isDiceRolled: true }));
+  const setIsRolled = (value: boolean) => {
+    setRoundState((prev) => ({ ...prev, isDiceRolled: value }));
   };
-  const isRolledToFalse = () => {
-    setRoundState((prev) => ({ ...prev, isDiceRolled: false }));
-  };
+
   const afterMove = () => {
     setRoundState((prev) => ({ ...prev, permissionToMove: false }));
   };
@@ -109,15 +101,13 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         setFieldStatus,
         players,
         setPlayers,
-    
         valueFromDiceRoll,
         roundState,
         setNextActivePlayer,
         setValueFromDiceRoll,
         rollCountIncrement,
         moveCountDecrement,
-        isRolled,
-        isRolledToFalse,
+        setIsRolled,
         afterMove,
       }}
     >

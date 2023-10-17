@@ -23,7 +23,7 @@ export const Board = () => {
     players,
     moveCountDecrement,
     roundState,
-    isRolledToFalse,
+    setIsRolled,
     afterMove,
   } = useGameContext();
 
@@ -44,7 +44,7 @@ export const Board = () => {
       moveCountDecrement();
     }
 
-    isRolledToFalse();
+    setIsRolled(false);
     afterMove();
     setFieldStatus(fieldStatusCopy);
     setDestinationIndicatorId(undefined);

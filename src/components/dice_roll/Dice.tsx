@@ -9,7 +9,7 @@ export const Dice = () => {
     valueFromDiceRoll,
     setValueFromDiceRoll,
     rollCountIncrement,
-    isRolled,
+    setIsRolled,
     roundState,
   } = useGameContext();
 
@@ -31,7 +31,7 @@ export const Dice = () => {
           clearInterval(interval);
           setIsRolling(false);
           rollCountIncrement();
-          isRolled();
+          setIsRolled(true);
         }
       }, 150);
     }
