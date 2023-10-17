@@ -1,7 +1,3 @@
-import {
-  INITIAL_FIELDS,
-  PLAYERS_BASE_FIELDS,
-} from "../../components/board/data/fields";
 import React, {
   ReactNode,
   createContext,
@@ -12,9 +8,10 @@ import React, {
 import { Field } from "../../components/board/data/types/fieldsTypes";
 import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
 import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
+import { Round } from "./types/round";
+import { INITIAL_FIELDS } from "../../components/board/data/fields";
+import { rulesCheckManager } from "./helpers/rulesLogic";
 import { usePrevious } from "../../hooks/usePreviousValue";
-import { areBaseFieldsOccupied } from "./helpers/helpers";
-import { getPermissionToMoveAPawn } from "../../components/board/helpers/getPermissionToMoveAPawn";
 
 type GameContextProviderProps = {
   children: ReactNode;
@@ -25,12 +22,11 @@ type GameContextType = {
   players: Player[];
   setFieldStatus: React.Dispatch<React.SetStateAction<Field[]>>;
   setPlayers: React.Dispatch<React.SetStateAction<Player[]>>;
-  changePlayerProperty: <P extends keyof Omit<Player, "id">>(
-    id: Player["id"],
-    property: P,
-    newValue: Player[P]
-  ) => void;
-  getPlayerById: (id: Player["id"]) => Player;
+  // changePlayerProperty: <P extends keyof Omit<Player, "id">>(
+  //   id: Player["id"],
+  //   property: P,
+  //   newValue: Player[P]
+  // ) => void;
   valueFromDiceRoll: number;
   roundState: Round;
   setNextActivePlayer: () => void;
@@ -46,14 +42,7 @@ export const GameContext = createContext<GameContextType>(
   {} as GameContextType
 );
 
-export type Round = {
-  activePlayer: Player["id"];
-  rollCount: number;
-  moveCount: number;
-  isDiceRolled: boolean;
-  permissionToMove: boolean;
-};
-export const INITIAL_ROUND_STATE = {
+const INITIAL_ROUND_STATE: Round = {
   activePlayer: 1,
   rollCount: 0,
   moveCount: 3,
@@ -66,69 +55,21 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [players, setPlayers] = useState<Player[]>(INITIAL_PLAYERS);
   const [valueFromDiceRoll, setValueFromDiceRoll] = useState<number>(3);
   const [roundState, setRoundState] = useState<Round>(INITIAL_ROUND_STATE);
+
   const previousValueFromDiceRoll = usePrevious(valueFromDiceRoll);
 
   useEffect(() => {
-    const isBaseFull = !areBaseFieldsOccupied(roundState.activePlayer);
-    const permissionToMove = fieldStatus.map((f) => {
-      return f.presentPawns.length
-        ? getPermissionToMoveAPawn(
-            f,
-            valueFromDiceRoll,
-            fieldStatus,
-            roundState
-          )
-        : false;
-    });
-
-    const isPermittedToMove = permissionToMove.find((b) => b === true);
-
-    if (roundState.moveCount === 0) setNextActivePlayer();
-
-    if (isBaseFull) {
-      if (roundState.rollCount === 3 && valueFromDiceRoll !== 6) {
-        setNextActivePlayer();
-      } else {
-        if (isPermittedToMove)
-          setRoundState((prev) => ({ ...prev, permissionToMove: true }));
-      }
-    } else {
-      if (isPermittedToMove) {
-        setRoundState((prev) => ({ ...prev, permissionToMove: true }));
-        if (previousValueFromDiceRoll === 6 && valueFromDiceRoll !== 6)
-          setMoveCountToLast();
-        if (valueFromDiceRoll !== 6) setMoveCountToLast();
-      }
-    }
-
-    console.log(roundState.permissionToMove);
+    rulesCheckManager(
+      roundState,
+      fieldStatus,
+      previousValueFromDiceRoll,
+      valueFromDiceRoll,
+      setNextActivePlayer,
+      setRoundState,
+      setMoveCountToLast
+    );
   }, [roundState.rollCount, roundState.moveCount]);
 
-  const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
-    id: Player["id"],
-    property: P,
-    newValue: Player[P]
-  ) => {
-    const playerIndex = players.findIndex((player) => player.id === id);
-    if (playerIndex === -1) {
-      throw new Error(`Player with id ${id} not found`);
-    }
-
-    setPlayers((prev) => {
-      const copy = [...prev];
-      copy[playerIndex][property] = newValue;
-      return copy;
-    });
-  };
-
-  const getPlayerById = (id: Player["id"]): Player => {
-    const playerIndex = players.findIndex((player) => player.id === id);
-    if (playerIndex === -1) {
-      throw new Error(`Player with id ${id} not found`);
-    }
-
-    return players[playerIndex];
-  };
 
   const setNextActivePlayer = () => {
     setRoundState((prev) => ({
@@ -146,9 +87,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const moveCountDecrement = () => {
     setRoundState((prev) => ({ ...prev, moveCount: prev.moveCount - 1 }));
   };
-  const setMoveCountToLast = () => {
-    setRoundState((prev) => ({ ...prev, moveCount: 1 }));
-  };
+
   const isRolled = () => {
     setRoundState((prev) => ({ ...prev, isDiceRolled: true }));
   };
@@ -159,9 +98,10 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     setRoundState((prev) => ({ ...prev, permissionToMove: false }));
   };
 
-  console.log(
-    `${roundState.rollCount} counter , ${roundState.activePlayer} activePlayer , ${roundState.moveCount} moveCOunt , ${roundState.isDiceRolled} isRolled`
-  );
+  const setMoveCountToLast = () => {
+    setRoundState((prev) => ({ ...prev, moveCount: 1 }));
+  };
+
   return (
     <GameContext.Provider
       value={{
@@ -169,8 +109,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         setFieldStatus,
         players,
         setPlayers,
-        changePlayerProperty,
-        getPlayerById,
+    
         valueFromDiceRoll,
         roundState,
         setNextActivePlayer,

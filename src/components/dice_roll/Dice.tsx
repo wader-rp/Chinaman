@@ -3,8 +3,6 @@ import { useGameContext } from "../../contexts/gameContext/gameContext";
 import "./dice.css";
 import { useEffect, useState } from "react";
 import { diceRoll } from "./helpers/diceRoll";
-import { areBaseFieldsOccupied } from "../../contexts/gameContext/helpers/helpers";
-import { getPermissionToMoveAPawn } from "../board/helpers/getPermissionToMoveAPawn";
 
 export const Dice = () => {
   const {
@@ -13,14 +11,13 @@ export const Dice = () => {
     rollCountIncrement,
     isRolled,
     roundState,
-    fieldStatus,
   } = useGameContext();
 
   const initialValue = valueFromDiceRoll;
 
   const [diceRollDisplay, setDiceRollDisplay] = useState<number>(initialValue);
   const [isRolling, setIsRolling] = useState(false);
-  
+
   useEffect(() => {
     let iteration = 0;
     let interval: NodeJS.Timer;
@@ -45,7 +42,6 @@ export const Dice = () => {
   }, [isRolling]);
 
   const handleRollClick = () => {
-    console.log(roundState.permissionToMove);
     if (!roundState.permissionToMove) setIsRolling(true);
   };
 
@@ -55,9 +51,6 @@ export const Dice = () => {
         src={diceNumbers[diceRollDisplay - 1].srcPath}
         onClick={handleRollClick}
         className="dice"
-        // style={{
-        //   cursor: roundState.isDiceRolled ? "not-allowed" : undefined,
-        // }}
       />
     </>
   );

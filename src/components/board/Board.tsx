@@ -3,17 +3,13 @@ import "../board/board.css";
 import { useBoardSize } from "../../hooks/useBoardSize";
 import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
-import {
-  dispatchPawnFromBaseField,
-  getPlayerIdByPawnId,
-  movePawnCertainNumberOfFields,
-} from "../../contexts/gameContext/helpers/helpers";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
-import { getDestinationForPawnAfterDiceThrow } from "./helpers/getDestinationForPawnAfterDiceThrow";
-import { PLAYER_ROUTES } from "./data/playersRoutes";
 import { useState } from "react";
-import { getPermissionToMoveAPawn } from "./helpers/getPermissionToMoveAPawn";
+import { isPresentPawnPermittedToMove } from "../../contexts/gameContext/helpers/getPermissionToMoveAPawn";
+import { handleOnMouseEnter } from "./helpers/handleOnMouseEnter";
+import { dispatchPawnFromBaseField } from "./helpers/dispatchPawnFromBaseField";
+import { movePawnCertainNumberOfFields } from "../../contexts/gameContext/helpers/movePawnCertainNumberOfFields";
 
 export const Board = () => {
   const size = useBoardSize();
@@ -69,30 +65,12 @@ export const Board = () => {
         </div>
       </div>
       {fieldStatus.map((field) => {
-        const permissionToMove = field.presentPawns.length
-          ? getPermissionToMoveAPawn(
-              field,
-              valueFromDiceRoll,
-              fieldStatus,
-              roundState
-            )
-          : false;
-
-        const handleOnMouseEnter = () => {
-          const playerId = getPlayerIdByPawnId(field.presentPawns[0]);
-          const destinationForPawnAfterDiceThrow =
-            valueFromDiceRoll && roundState.activePlayer === playerId
-              ? getDestinationForPawnAfterDiceThrow(
-                  field.presentPawns[0],
-                  PLAYER_ROUTES,
-                  field,
-                  fieldStatus,
-                  valueFromDiceRoll
-                )
-              : undefined;
-
-          setDestinationIndicatorId(destinationForPawnAfterDiceThrow?.id);
-        };
+        const permissionToMove = isPresentPawnPermittedToMove(
+          field,
+          valueFromDiceRoll,
+          fieldStatus,
+          roundState
+        );
 
         return (
           <div
@@ -121,7 +99,15 @@ export const Board = () => {
                       top: index * 5,
                       left: index * 5,
                     }}
-                    onMouseEnter={handleOnMouseEnter}
+                    onMouseEnter={() =>
+                      handleOnMouseEnter(
+                        field,
+                        valueFromDiceRoll,
+                        roundState,
+                        fieldStatus,
+                        setDestinationIndicatorId
+                      )
+                    }
                     onMouseLeave={() => setDestinationIndicatorId(undefined)}
                     onClick={() => {
                       permissionToMove ? handlePawnClick(field) : undefined;

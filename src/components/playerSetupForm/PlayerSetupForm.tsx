@@ -3,18 +3,26 @@ import { ChangeEvent } from "react";
 import "./playerSetupForm.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { PlayerSetupForHuman } from "./playerSetupForHuman";
+import { getPlayerById } from "../../contexts/gameContext/helpers/getPlayerById";
+import { changePlayerProperty } from "../../contexts/gameContext/helpers/changePlayerProperty";
 
 type playerProps = {
   id: number;
 };
 
 export const PlayerSetupForm = ({ id }: playerProps) => {
-  const { changePlayerProperty, getPlayerById } = useGameContext();
+  const { players, setPlayers } = useGameContext();
 
-  const { isHuman, playerName } = getPlayerById(id);
+  const { isHuman, playerName } = getPlayerById(id, players);
 
   const onOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    changePlayerProperty(id, "isHuman", e.target.value === "human");
+    changePlayerProperty(
+      id,
+      "isHuman",
+      e.target.value === "human",
+      players,
+      setPlayers
+    );
   };
 
   return (

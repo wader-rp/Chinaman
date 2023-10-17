@@ -2,8 +2,8 @@ import { FieldTypesEnum } from "../data/enums/fieldTypeEnum";
 import { PLAYER_ROUTES } from "../data/playersRoutes";
 import { Field } from "../data/types/fieldsTypes";
 import { getDestinationForPawnAfterDiceThrow } from "./getDestinationForPawnAfterDiceThrow";
-import { getPlayerIdByPawnId } from "../../../contexts/gameContext/helpers/helpers";
-import { Round } from "../../../contexts/gameContext/gameContext";
+import { getPlayerIdByPawnId } from "../../../contexts/gameContext/helpers/getPlayerIdByPawnId";
+import { Round } from "../../../contexts/gameContext/types/round";
 
 export const getPermissionToMoveAPawn = (
   field: Field,
