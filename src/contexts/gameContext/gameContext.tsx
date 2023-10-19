@@ -12,12 +12,13 @@ import { Round } from "./types/round";
 import { INITIAL_FIELDS } from "../../components/board/data/fields";
 import { rulesCheckManager } from "./helpers/rulesLogic";
 import { usePrevious } from "../../hooks/usePreviousValue";
+import { DiceRollAPI, useDiceRoll } from "../../hooks/useDiceRoll";
 
 type GameContextProviderProps = {
   children: ReactNode;
 };
 
-type GameContextType = {
+export type GameContextType = {
   fieldStatus: Field[];
   players: Player[];
   setFieldStatus: React.Dispatch<React.SetStateAction<Field[]>>;
@@ -29,7 +30,7 @@ type GameContextType = {
   rollCountIncrement: () => void;
   moveCountDecrement: () => void;
   setIsRolled: (value: boolean) => void;
-
+  diceRollAPI: DiceRollAPI;
   afterMove: () => void;
 };
 
@@ -94,6 +95,14 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
     setRoundState((prev) => ({ ...prev, moveCount: 1 }));
   };
 
+  const diceRollAPI = useDiceRoll({
+    valueFromDiceRoll,
+    setValueFromDiceRoll,
+    rollCountIncrement,
+    setIsRolled,
+    roundState,
+  });
+
   return (
     <GameContext.Provider
       value={{
@@ -109,6 +118,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
         moveCountDecrement,
         setIsRolled,
         afterMove,
+        diceRollAPI,
       }}
     >
       {children}

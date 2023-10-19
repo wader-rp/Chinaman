@@ -5,17 +5,24 @@ import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { isPresentPawnPermittedToMove } from "../../contexts/gameContext/helpers/isPresentPawnPermittedToMove";
 import { handleOnMouseEnter } from "./helpers/handleOnMouseEnter";
 import { dispatchPawnFromBaseField } from "./helpers/dispatchPawnFromBaseField";
 import { movePawnCertainNumberOfFields } from "../../contexts/gameContext/helpers/movePawnCertainNumberOfFields";
+import { log } from "console";
+import { useResize } from "../../hooks/useResize";
 
 export const Board = () => {
+  const ref = useRef<HTMLDivElement>(null);
   const size = useBoardSize();
+  const [cellSize, setCellSize] = useState(0);
   const [destinationIndicatorId, setDestinationIndicatorId] = useState<
     number | undefined
   >();
+  const updateCellSize = () =>
+    setCellSize((ref.current?.clientWidth ?? 0) / 11);
+  useResize(updateCellSize, true);
   const {
     setFieldStatus,
     fieldStatus,
@@ -51,19 +58,7 @@ export const Board = () => {
   };
 
   return (
-    <div className="fields-container">
-      <span>{`Now it's ${
-        players[roundState.activePlayer - 1].playerName
-      } turn`}</span>
-      <div
-        className="value-from-dice-wrapper"
-        style={{ top: size * 5, left: size * 5 }}
-      >
-        <div className="value-from-dice">
-          {valueFromDiceRoll}
-          {`${destinationIndicatorId}`}
-        </div>
-      </div>
+    <div className="fields-container" ref={ref}>
       {fieldStatus.map((field) => {
         const permissionToMove = isPresentPawnPermittedToMove(
           field,
@@ -77,10 +72,10 @@ export const Board = () => {
             key={field.id}
             className="singleField"
             style={{
-              width: size,
-              height: size,
-              top: size * field.position.y,
-              left: size * field.position.x,
+              width: cellSize,
+              height: cellSize,
+              top: cellSize * field.position.y,
+              left: cellSize * field.position.x,
               borderColor: fieldColors(field.id),
               backgroundColor:
                 field.id === destinationIndicatorId ? "#008080" : "unset",

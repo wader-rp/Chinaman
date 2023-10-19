@@ -1,6 +1,6 @@
 import { PlayerPanel } from "../../components/playerpanels/PlayerPanels";
 import { Board } from "../../components/board/Board";
-import "../../pages/gameBoard/gameBoard.css";
+import "./GameBoard.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 
 export const GameBoard = () => {

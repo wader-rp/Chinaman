@@ -1,4 +1,3 @@
-import { Player } from "../../playerSetupForm/data/types/playerTypes";
 import {
   PLAYER1_START_FIELD,
   PLAYER2_START_FIELD,
