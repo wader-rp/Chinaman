@@ -1,5 +1,3 @@
-import React from "react";
-
 import "../homePage/homePage.css";
 
 export const HomePage = () => {

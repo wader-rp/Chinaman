@@ -1,8 +1,8 @@
 import { PLAYER_ROUTES } from "../../../components/board/data/playersRoutes";
 import { Field } from "../../../components/board/data/types/fieldsTypes";
 import { getDestinationForPawnAfterDiceThrow } from "../../../components/board/helpers/getDestinationForPawnAfterDiceThrow";
-import { getPlayerIdByPawnId } from "./getPlayerIdByPawnId";
-import { sendPawnsBackToBase } from "./sendPawnsBackToBase";
+import { getPlayerIdByPawnId } from "../../../components/board/helpers/getPlayerIdByPawnId";
+import { sendPawnsBackToBase } from "../../../components/board/helpers/sendPawnsBackToBase";
 
 export const movePawnCertainNumberOfFields = (
   pawnId: string,

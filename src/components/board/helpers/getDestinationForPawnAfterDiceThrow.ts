@@ -1,8 +1,8 @@
 import { Pawn } from "../data/pawns";
-import { getPlayerIdByPawnId } from "../../../contexts/gameContext/helpers/getPlayerIdByPawnId";
+import { getPlayerIdByPawnId } from "./getPlayerIdByPawnId";
 import { Field } from "../data/types/fieldsTypes";
 import { FieldTypesEnum } from "../data/enums/fieldTypeEnum";
-import { getStartFieldByPlayerId } from "../../../contexts/gameContext/helpers/getStartFieldByPlayerId";
+import { getStartFieldByPlayerId } from "./getStartFieldByPlayerId";
 
 export const getDestinationForPawnAfterDiceThrow = (
   pawnId: Pawn["id"],

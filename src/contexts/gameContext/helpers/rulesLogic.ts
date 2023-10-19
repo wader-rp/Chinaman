@@ -1,7 +1,7 @@
 import { Field } from "../../../components/board/data/types/fieldsTypes";
 import { Round } from "../types/round";
-import { areBaseFieldsOccupied } from "./areBaseFieldsOccupied";
-import { isPresentPawnPermittedToMove } from "./getPermissionToMoveAPawn";
+import { areBaseFieldsOccupied } from "../../../components/board/helpers/areBaseFieldsOccupied";
+import { isPresentPawnPermittedToMove } from "./isPresentPawnPermittedToMove";
 
 export const rulesCheckManager = (
   roundState: Round,

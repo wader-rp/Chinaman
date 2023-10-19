@@ -3,7 +3,7 @@ import { ChangeEvent } from "react";
 import "./playerSetupForm.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { PlayerSetupForHuman } from "./playerSetupForHuman";
-import { getPlayerById } from "../../contexts/gameContext/helpers/getPlayerById";
+import { getPlayerById } from "../playerpanels/helpers/getPlayerById";
 import { changePlayerProperty } from "../../contexts/gameContext/helpers/changePlayerProperty";
 
 type playerProps = {

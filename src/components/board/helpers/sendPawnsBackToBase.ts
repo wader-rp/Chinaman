@@ -1,6 +1,6 @@
-import { PLAYERS_BASE_FIELDS } from "../../../components/board/data/fields";
-import { Field } from "../../../components/board/data/types/fieldsTypes";
-import { getEmptyFieldByTypeAndPlayerId } from "../../../components/board/helpers/getEmptyFieldByTypeAndPlayerId";
+import { PLAYERS_BASE_FIELDS } from "../data/fields";
+import { Field } from "../data/types/fieldsTypes";
+import { getEmptyFieldByTypeAndPlayerId } from "./getEmptyFieldByTypeAndPlayerId";
 import { getPlayerIdByPawnId } from "./getPlayerIdByPawnId";
 
 export const sendPawnsBackToBase = (

@@ -6,7 +6,7 @@ import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
 import { useState } from "react";
-import { isPresentPawnPermittedToMove } from "../../contexts/gameContext/helpers/getPermissionToMoveAPawn";
+import { isPresentPawnPermittedToMove } from "../../contexts/gameContext/helpers/isPresentPawnPermittedToMove";
 import { handleOnMouseEnter } from "./helpers/handleOnMouseEnter";
 import { dispatchPawnFromBaseField } from "./helpers/dispatchPawnFromBaseField";
 import { movePawnCertainNumberOfFields } from "../../contexts/gameContext/helpers/movePawnCertainNumberOfFields";

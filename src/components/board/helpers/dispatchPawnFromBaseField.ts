@@ -1,6 +1,6 @@
-import { getStartFieldByPlayerId } from "../../../contexts/gameContext/helpers/getStartFieldByPlayerId";
-import { getPlayerIdByPawnId } from "../../../contexts/gameContext/helpers/getPlayerIdByPawnId";
-import { sendPawnsBackToBase } from "../../../contexts/gameContext/helpers/sendPawnsBackToBase";
+import { getStartFieldByPlayerId } from "./getStartFieldByPlayerId";
+import { getPlayerIdByPawnId } from "./getPlayerIdByPawnId";
+import { sendPawnsBackToBase } from "./sendPawnsBackToBase";
 import { Field } from "../data/types/fieldsTypes";
 
 export const dispatchPawnFromBaseField = (

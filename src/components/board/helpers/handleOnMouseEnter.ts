@@ -1,4 +1,4 @@
-import { getPlayerIdByPawnId } from "../../../contexts/gameContext/helpers/getPlayerIdByPawnId";
+import { getPlayerIdByPawnId } from "./getPlayerIdByPawnId";
 import { Round } from "../../../contexts/gameContext/types/round";
 import { PLAYER_ROUTES } from "../data/playersRoutes";
 import { Field } from "../data/types/fieldsTypes";
