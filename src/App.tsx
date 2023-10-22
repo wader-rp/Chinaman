@@ -1,5 +1,5 @@
 import { GameContextProvider } from "./contexts/gameContext/gameContext";
-import { GameBoard } from "./pages/GameBoard/GameBoard";
+import { GameBoard } from "./pages/gameBoard/gameBoard";
 
 import { HomePage } from "./pages/homePage/homePage";
 import { PlayerSelectPage } from "./pages/playerSelect/playerSelectPage";

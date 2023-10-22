@@ -13,32 +13,15 @@ type playerProps = {
 export const PlayerSetupForm = ({ id }: playerProps) => {
   const { players, setPlayers } = useGameContext();
 
-  const { isHuman, playerName } = getPlayerById(id, players);
+  const { playerName } = getPlayerById(id, players);
 
-  const onOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    changePlayerProperty(
-      id,
-      "isHuman",
-      e.target.value === "human",
-      players,
-      setPlayers
-    );
-  };
+  // const onOptionChange = (e: ChangeEvent<HTMLSelectElement>) => {
+  //   changePlayerProperty(id, e.target.value === "human", players, setPlayers);
+  // };
 
   return (
     <div className="playerSetup-form">
-      <h2 className="playerSetup-title">Are you a human ?</h2>
-      <select
-        name="isHuman"
-        id={playerName}
-        className="playerSetup-isHuman-select"
-        onChange={onOptionChange}
-      >
-        <option value="pc">No, let my computer play</option>
-        <option value="human">Yes!</option>
-      </select>
-
-      {isHuman && <PlayerSetupForHuman id={id} playerName={playerName} />}
+      <PlayerSetupForHuman id={id} playerName={playerName} />
     </div>
   );
 };

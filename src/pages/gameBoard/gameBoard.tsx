@@ -1,10 +1,15 @@
 import { PlayerPanel } from "../../components/playerpanels/PlayerPanels";
 import { Board } from "../../components/board/Board";
-import "./GameBoard.css";
+import "./gameBoard.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
+import { Player } from "../../components/playerSetupForm/data/types/playerTypes";
 
 export const GameBoard = () => {
   const { players } = useGameContext();
+
+  // const getMarginForTwoPlayers = (players: Player[]) => {
+  //   players.length === 2 ? "50%" : undefined;
+  // }
 
   return (
     <div className="gameBoard-container">
@@ -16,7 +21,6 @@ export const GameBoard = () => {
               <PlayerPanel
                 key={player.id}
                 id={player.id}
-                isHuman={player.isHuman}
                 playerName={player.playerName}
                 playerAvatar={player.playerAvatar}
                 playerClass={player.playerClass}
@@ -36,7 +40,6 @@ export const GameBoard = () => {
               <PlayerPanel
                 key={player.id}
                 id={player.id}
-                isHuman={player.isHuman}
                 playerName={player.playerName}
                 playerAvatar={player.playerAvatar}
                 playerClass={player.playerClass}
