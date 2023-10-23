@@ -1,0 +1,11 @@
+.playerSetup-container {
+  padding: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.playerSetup-text {
+  font-size: 1.5rem;
+}

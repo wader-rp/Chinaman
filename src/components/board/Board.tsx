@@ -5,12 +5,11 @@ import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { Field } from "./data/types/fieldsTypes";
 import { FieldTypesEnum } from "./data/enums/fieldTypeEnum";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { isPresentPawnPermittedToMove } from "../../contexts/gameContext/helpers/isPresentPawnPermittedToMove";
 import { handleOnMouseEnter } from "./helpers/handleOnMouseEnter";
 import { dispatchPawnFromBaseField } from "./helpers/dispatchPawnFromBaseField";
 import { movePawnCertainNumberOfFields } from "../../contexts/gameContext/helpers/movePawnCertainNumberOfFields";
-import { log } from "console";
 import { useResize } from "../../hooks/useResize";
 
 export const Board = () => {
@@ -27,7 +26,6 @@ export const Board = () => {
     setFieldStatus,
     fieldStatus,
     valueFromDiceRoll,
-    players,
     moveCountDecrement,
     roundState,
     setIsRolled,
@@ -82,7 +80,6 @@ export const Board = () => {
             }}
           >
             <div className="field-wrapper">
-              {field.id}
               {field.presentPawns.map((pawn, index) => {
                 return (
                   <div
@@ -107,9 +104,7 @@ export const Board = () => {
                     onClick={() => {
                       permissionToMove ? handlePawnClick(field) : undefined;
                     }}
-                  >
-                    {pawn}
-                  </div>
+                  ></div>
                 );
               })}
             </div>

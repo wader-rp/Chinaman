@@ -1,4 +1,3 @@
-import React from "react";
 import { PlayerSetupForm } from "../../components/playerSetupForm/PlayerSetupForm";
 import "./playerSelectPage.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";

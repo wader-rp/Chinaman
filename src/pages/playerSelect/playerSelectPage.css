@@ -8,6 +8,7 @@
   margin: auto;
   background-color: var(--blue-light);
   color: var(--blue-font-dark);
+  padding: 0 3rem;
 }
 .playersSetup-page .header {
   letter-spacing: 5px;

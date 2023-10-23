@@ -5,9 +5,9 @@
 }
 
 :root {
-  --blue-font-dark: hsl(209, 32%, 19%);
+  --blue-font-dark: hsl(209, 32%, 15%);
   --blue-dark: hsl(208, 32%, 45%);
-  --blue-light: hsl(207, 15%, 61%);
+  --blue-light: hsl(207, 68%, 84%);
 
   --blue-ncs: hsla(198, 58%, 43%, 1);
   --vanilla: hsl(121, 100%, 70%);

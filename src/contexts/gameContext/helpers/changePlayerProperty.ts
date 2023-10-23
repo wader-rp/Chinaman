@@ -1,6 +1,6 @@
 import { Player } from "../../../components/playerSetupForm/data/types/playerTypes";
 
-export const changePlayerProperty = <P extends keyof Omit<Player, "id">>(
+export const changePlayerProperty = <P extends keyof Player>(
   id: Player["id"],
   property: P,
   newValue: Player[P],

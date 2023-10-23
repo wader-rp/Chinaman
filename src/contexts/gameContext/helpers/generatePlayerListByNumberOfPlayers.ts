@@ -7,5 +7,6 @@ export const generatePlayerListByNumberOfPlayers = (
   const newPlayersList = playerList.filter(
     (player) => player.id <= numberOfPlayers
   );
+
   return newPlayersList;
 };
