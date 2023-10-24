@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import "../homePage/homePage.css";
+import "../../styles/buttons.css";
 import { generatePlayerListByNumberOfPlayers } from "../../contexts/gameContext/helpers/generatePlayerListByNumberOfPlayers";
 import { INITIAL_PLAYERS } from "../../components/playerSetupForm/data/startPlayers";
+import { NavLink } from "react-router-dom";
 
 export const HomePage = () => {
   const { setPlayers } = useGameContext();
@@ -15,7 +17,7 @@ export const HomePage = () => {
   }, [numberOfPlayers]);
 
   return (
-    <div>
+    <div className="home-page">
       <h1>CHINAMAN</h1>
       <h3>Lorem ipsum dolor sit chujem</h3>
       <span>
@@ -24,7 +26,6 @@ export const HomePage = () => {
         modi molestias earum, tempora cumque dignissimos soluta id recusandae
         maxime?
       </span>
-
       <label>How many players are playing ??</label>
       <select
         id="numberOfPlayers"
@@ -36,6 +37,9 @@ export const HomePage = () => {
         <option value={3}>3</option>
         <option value={4}>4</option>
       </select>
+      <NavLink to={"/players-setup"}>
+        <button className="nav-button">NEXT</button>
+      </NavLink>
     </div>
   );
 };
