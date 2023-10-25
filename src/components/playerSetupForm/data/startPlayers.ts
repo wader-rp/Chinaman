@@ -5,24 +5,24 @@ export const INITIAL_PLAYERS: Player[] = [
     id: 1,
     playerAvatar: "",
     playerName: "Bob",
-    playerClass: "",
+    pawnColor: "#dc143c",
   },
   {
     id: 2,
     playerAvatar: "",
     playerName: "Tony",
-    playerClass: "",
+    pawnColor: "#228b22",
   },
   {
     id: 3,
     playerAvatar: "",
     playerName: "Jamal",
-    playerClass: "",
+    pawnColor: "#1e90ff",
   },
   {
     id: 4,
     playerAvatar: "",
     playerName: "Robert",
-    playerClass: "",
+    pawnColor: "#E7DD00",
   },
 ];

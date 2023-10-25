@@ -2,6 +2,7 @@ import { ChangeEvent } from "react";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { changePlayerProperty } from "../../contexts/gameContext/helpers/changePlayerProperty";
 import "./playerSetup.css";
+import { Colors } from "./data/colors";
 
 type FormForHumanProps = {
   id: number;
@@ -17,6 +18,18 @@ export const PlayerSetup = ({ id, playerName }: FormForHumanProps) => {
   const onFocusNameClear = () => {
     changePlayerProperty(id, "playerName", "", players, setPlayers);
   };
+  const onPawnColorChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    changePlayerProperty(id, "pawnColor", e.target.value, players, setPlayers);
+  };
+
+  const getDefaultValue = () => {
+    return players.find((p) => p.id === id)?.pawnColor;
+  };
+
+  const getTakenColors = (colorCode: string): boolean => {
+    return players.some((p) => p.pawnColor === colorCode);
+  };
+
   return (
     <div className="playerSetup-container">
       <span className="playerSetup-text">Player name</span>
@@ -28,6 +41,22 @@ export const PlayerSetup = ({ id, playerName }: FormForHumanProps) => {
       <span className="playerSetup-text">
         Choose your avatar and Pawn Color
       </span>
+      <div>
+        <select
+          id="numberOfPlayers"
+          name="colorSelect"
+          onChange={onPawnColorChange}
+          defaultValue={getDefaultValue()}
+        >
+          {Colors.map((color) => (
+            <option
+              value={color.colorCode}
+              key={color.name}
+              disabled={getTakenColors(color.colorCode)}
+            >{`${color.icon} ${color.name}`}</option>
+          ))}
+        </select>
+      </div>
     </div>
   );
 };

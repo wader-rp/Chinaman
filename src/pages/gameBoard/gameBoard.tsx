@@ -18,7 +18,7 @@ export const GameBoard = () => {
                 id={player.id}
                 playerName={player.playerName}
                 playerAvatar={player.playerAvatar}
-                playerClass={player.playerClass}
+                pawnColor={player.pawnColor}
               />
             );
           })}
@@ -37,7 +37,7 @@ export const GameBoard = () => {
                 id={player.id}
                 playerName={player.playerName}
                 playerAvatar={player.playerAvatar}
-                playerClass={player.playerClass}
+                pawnColor={player.pawnColor}
               />
             );
           })}

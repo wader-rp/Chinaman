@@ -1,6 +1,5 @@
 import { fieldColors } from "./helpers/generateFieldColors";
 import "../board/board.css";
-import { useBoardSize } from "../../hooks/useBoardSize";
 import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { Field } from "./data/types/fieldsTypes";
@@ -14,7 +13,7 @@ import { useResize } from "../../hooks/useResize";
 
 export const Board = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const size = useBoardSize();
+  // const size = useBoardSize();
   const [cellSize, setCellSize] = useState(0);
   const [destinationIndicatorId, setDestinationIndicatorId] = useState<
     number | undefined
@@ -30,6 +29,7 @@ export const Board = () => {
     roundState,
     setIsRolled,
     afterMove,
+    players,
   } = useGameContext();
 
   const handlePawnClick = (field: Field) => {
@@ -74,7 +74,7 @@ export const Board = () => {
               height: cellSize,
               top: cellSize * field.position.y,
               left: cellSize * field.position.x,
-              borderColor: fieldColors(field.id),
+              borderColor: fieldColors(field.id, players),
               backgroundColor:
                 field.id === destinationIndicatorId ? "#008080" : "unset",
             }}
@@ -86,7 +86,10 @@ export const Board = () => {
                     key={`${index}_${pawn}`}
                     className="pawn"
                     style={{
-                      backgroundColor: getPawnColor(field.presentPawns[0]),
+                      backgroundColor: getPawnColor(
+                        field.presentPawns[0],
+                        players
+                      ),
                       cursor: permissionToMove ? undefined : "not-allowed",
                       top: index * 5,
                       left: index * 5,
