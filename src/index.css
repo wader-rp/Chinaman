@@ -5,14 +5,11 @@
 }
 
 :root {
-  --blue-font-dark: hsl(209, 32%, 15%);
-  --blue-dark: hsl(208, 32%, 45%);
-  --blue-light: hsl(207, 68%, 84%);
-
-  --blue-ncs: hsla(198, 58%, 43%, 1);
-  --vanilla: hsl(121, 100%, 70%);
-  --icterine: hsla(61, 92%, 63%, 1);
-  --vermilion: hsla(4, 88%, 58%, 1);
+  --bluegray-font: hsl(200, 19%, 18%);
+  --bluegray-dark: hsl(200, 18%, 26%);
+  --bluegray-shadow: hsl(200, 18%, 46%);
+  --bluegray-medium: hsl(200, 15%, 73%);
+  --bluegray-light: hsl(198, 16%, 84%);
 }
 
 body {
@@ -26,4 +23,10 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+@font-face {
+  font-family: "Gang of Three";
+  src: local("gang-of-three.regular"),
+    url("./fonts/gang-of-three.regular.ttf") format("truetype");
 }

@@ -5,6 +5,7 @@ import { HomePage } from "./pages/homePage/homePage";
 import { PlayerSelectPage } from "./pages/playerSelect/playerSelectPage";
 import { ResultPage } from "./pages/resultPage/resultPage";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import "./fonts/gang-of-three.regular.ttf";
 
 function App() {
   return (

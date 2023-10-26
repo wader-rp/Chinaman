@@ -32,16 +32,18 @@ export const PlayerSetup = ({ id, playerName }: FormForHumanProps) => {
 
   return (
     <div className="playerSetup-container">
-      <span className="playerSetup-text">Player name</span>
-      <input
-        value={playerName}
-        onChange={onNameChange}
-        onFocus={onFocusNameClear}
-      />
-      <span className="playerSetup-text">
-        Choose your avatar and Pawn Color
-      </span>
-      <div>
+      <div className="playerSetup-row">
+        <span className="playerSetup-text">NAME</span>
+        <input
+          value={playerName}
+          onChange={onNameChange}
+          onFocus={onFocusNameClear}
+          className="playerSetup-input"
+        />
+      </div>
+      <div className="playerSetup-row">
+        <span className="playerSetup-text">pawn color</span>
+
         <select
           id="numberOfPlayers"
           name="colorSelect"

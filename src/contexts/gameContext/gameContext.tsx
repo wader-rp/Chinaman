@@ -69,7 +69,8 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const setNextActivePlayer = () => {
     setRoundState((prev) => ({
       ...prev,
-      activePlayer: prev.activePlayer < 4 ? prev.activePlayer + 1 : 1,
+      activePlayer:
+        prev.activePlayer < players.length ? prev.activePlayer + 1 : 1,
       rollCount: 0,
       moveCount: 3,
       isDiceRolled: false,

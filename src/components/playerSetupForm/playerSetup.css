@@ -2,10 +2,34 @@
   padding: 5rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
+
   gap: 1.5rem;
+  font-family: "Gang of Three";
+  letter-spacing: 5px;
+}
+
+.playerSetup-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
 }
 
 .playerSetup-text {
   font-size: 1.5rem;
+}
+
+.playerSetup-input {
+  width: 100%;
+  height: 40px;
+  padding: 5px;
+  border-radius: 10px;
+  border: 2px solid var(--bluegray-dark);
+  cursor: pointer;
+  font-size: 1.2rem;
+  text-align: center;
+  letter-spacing: 2px;
+  font-family: inherit;
+  background-color: var(--bluegray-light);
 }
