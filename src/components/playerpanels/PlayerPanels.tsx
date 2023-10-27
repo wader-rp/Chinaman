@@ -5,16 +5,30 @@ import { Player } from "../playerSetupForm/data/types/playerTypes";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { Dice } from "../dice_roll/Dice";
 
-export const PlayerPanel: FC<Player> = ({ playerName, playerAvatar, id }) => {
+export const PlayerPanel: FC<Player> = ({ playerName, id, pawnColor }) => {
   const {
     roundState: { activePlayer },
+    players,
   } = useGameContext();
+
+  const activePlayerBackground = () => {
+    if (activePlayer === id) {
+      return players.find((p) => p.id === id)?.pawnColor;
+    }
+  };
 
   return (
     <div className="playerPanel">
-      <img alt="avatar" className="playerPanel-avatar" src={playerAvatar}></img>
-      <span className="player-name">{playerName}</span>
-      <div>{id === activePlayer && <Dice />}</div>
+      <span
+        className="player-name"
+        style={{
+          borderColor: `${pawnColor}`,
+          backgroundColor: activePlayerBackground(),
+        }}
+      >
+        {playerName}
+      </span>
+      <div className="dice-wrapper">{id === activePlayer && <Dice />}</div>
     </div>
   );
 };

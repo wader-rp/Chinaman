@@ -72,7 +72,7 @@ export const Board = () => {
             style={{
               width: cellSize,
               height: cellSize,
-              top: cellSize * field.position.y,
+              top: cellSize * field.position.y + 10,
               left: cellSize * field.position.x,
               borderColor: fieldColors(field.id, players),
               backgroundColor:

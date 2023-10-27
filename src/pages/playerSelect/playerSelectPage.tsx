@@ -4,7 +4,7 @@ import "../../styles/buttons.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { NavLink } from "react-router-dom";
 
-export const PlayerSelectPage = () => {
+export const PlayerSetupPage = () => {
   const { players } = useGameContext();
   return (
     <div className="playersSetup-page">

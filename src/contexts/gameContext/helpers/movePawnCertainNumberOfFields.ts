@@ -13,7 +13,7 @@ export const movePawnCertainNumberOfFields = (
   const indexBeforeDiceThrowOnBoard = fieldArray.findIndex(
     (f) => f.id === field.id
   );
-
+  /*TODO: nie można zbić stacmka*/
   const destinationFieldOnBoard = getDestinationForPawnAfterDiceThrow(
     pawnId,
     PLAYER_ROUTES,

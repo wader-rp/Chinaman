@@ -53,7 +53,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
   const [roundState, setRoundState] = useState<Round>(INITIAL_ROUND_STATE);
 
   const previousValueFromDiceRoll = usePrevious(valueFromDiceRoll);
-  console.log(players);
+
   useEffect(() => {
     rulesCheckManager(
       roundState,
@@ -64,6 +64,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
       setRoundState,
       setMoveCountToLast
     );
+    console.log(roundState);
   }, [roundState.rollCount, roundState.moveCount]);
 
   const setNextActivePlayer = () => {

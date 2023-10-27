@@ -1,19 +1,20 @@
 .playerPanel {
   display: flex;
+  flex-direction: column;
+}
+.player-name {
+  font-family: "Gang of Three";
+  font-size: 4rem;
+  border: 5px dashed;
+  padding: 10px 10px;
+  border-radius: 10px;
+}
+
+.dice-wrapper {
+  position: relative;
+  margin-top: 1rem;
+  cursor: pointer;
+  display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 50%;
-}
-
-.playerPanel-avatar {
-  width: 150px;
-  height: 150px;
-  border: 10px solid black;
-  border-radius: 50%;
-}
-
-.dice-button {
-  transform: scale(0.3);
-  cursor: pointer;
 }

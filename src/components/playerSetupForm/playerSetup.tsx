@@ -42,7 +42,7 @@ export const PlayerSetup = ({ id, playerName }: FormForHumanProps) => {
         />
       </div>
       <div className="playerSetup-row">
-        <span className="playerSetup-text">pawn color</span>
+        <span className="playerSetup-text">PAWN COLOR</span>
 
         <select
           id="numberOfPlayers"

@@ -1,0 +1,48 @@
+.home-page {
+  display: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 100vh;
+  background-color: var(--bluegray-medium);
+  font-family: "Gang of Three";
+  letter-spacing: 6px;
+  padding: 2.5rem 10rem;
+}
+
+.title {
+  font-size: 4rem;
+
+  letter-spacing: 1rem;
+  border: 15px double var(--bluegray-light);
+  border-radius: 10px;
+  padding: 1rem 2rem;
+  color: var(--bluegray-font);
+  text-shadow: 3px 3px var(--bluegray-light);
+}
+
+.select-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  font-size: 2rem;
+}
+
+.rules {
+  margin-top: -10px;
+}
+
+.home-page hr {
+  color: var(--bluegray-font);
+  width: 70%;
+}
+.home-page p {
+  text-align: center;
+}
+
+.home-page select {
+  text-align: center;
+}

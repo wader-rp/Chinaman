@@ -17,7 +17,6 @@ export const GameBoard = () => {
                 key={player.id}
                 id={player.id}
                 playerName={player.playerName}
-                playerAvatar={player.playerAvatar}
                 pawnColor={player.pawnColor}
               />
             );
@@ -36,7 +35,6 @@ export const GameBoard = () => {
                 key={player.id}
                 id={player.id}
                 playerName={player.playerName}
-                playerAvatar={player.playerAvatar}
                 pawnColor={player.pawnColor}
               />
             );

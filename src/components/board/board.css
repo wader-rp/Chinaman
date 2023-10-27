@@ -2,6 +2,13 @@
   width: 100%;
   height: 100%;
   position: relative;
+
+  background: rgb(255, 255, 255);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(208, 217, 221, 1) 70%
+  );
 }
 
 .singleField {
@@ -15,18 +22,17 @@
   width: 100%;
   height: 100%;
   display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .pawn {
   position: absolute;
-  width: 45px;
-  height: 45px;
+  width: 65%;
+  height: 65%;
   box-shadow: 0 0 2px;
   border-radius: 50%;
   cursor: pointer;
   translate: 25% 25%;
+  border: 2px dashed white;
 }
 
 .value-from-dice-wrapper {
