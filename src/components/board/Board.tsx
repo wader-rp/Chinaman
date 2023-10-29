@@ -55,6 +55,8 @@ export const Board = () => {
     setDestinationIndicatorId(undefined);
   };
 
+  console.log(cellSize, window.innerHeight);
+
   return (
     <div className="fields-container" ref={ref}>
       {fieldStatus.map((field) => {
@@ -70,8 +72,8 @@ export const Board = () => {
             key={field.id}
             className="singleField"
             style={{
-              width: cellSize,
-              height: cellSize,
+              width: cellSize - 10,
+              height: cellSize - 10,
               top: cellSize * field.position.y + 10,
               left: cellSize * field.position.x,
               borderColor: fieldColors(field.id, players),
@@ -79,38 +81,36 @@ export const Board = () => {
                 field.id === destinationIndicatorId ? "#008080" : "unset",
             }}
           >
-            <div className="field-wrapper">
-              {field.presentPawns.map((pawn, index) => {
-                return (
-                  <div
-                    key={`${index}_${pawn}`}
-                    className="pawn"
-                    style={{
-                      backgroundColor: getPawnColor(
-                        field.presentPawns[0],
-                        players
-                      ),
-                      cursor: permissionToMove ? undefined : "not-allowed",
-                      top: index * 5,
-                      left: index * 5,
-                    }}
-                    onMouseEnter={() =>
-                      handleOnMouseEnter(
-                        field,
-                        valueFromDiceRoll,
-                        roundState,
-                        fieldStatus,
-                        setDestinationIndicatorId
-                      )
-                    }
-                    onMouseLeave={() => setDestinationIndicatorId(undefined)}
-                    onClick={() => {
-                      permissionToMove ? handlePawnClick(field) : undefined;
-                    }}
-                  ></div>
-                );
-              })}
-            </div>
+            {field.presentPawns.map((pawn, index) => {
+              return (
+                <div
+                  key={`${index}_${pawn}`}
+                  className="pawn"
+                  style={{
+                    backgroundColor: getPawnColor(
+                      field.presentPawns[0],
+                      players
+                    ),
+                    cursor: permissionToMove ? undefined : "not-allowed",
+                    top: index * 5,
+                    left: index * 5,
+                  }}
+                  onMouseEnter={() =>
+                    handleOnMouseEnter(
+                      field,
+                      valueFromDiceRoll,
+                      roundState,
+                      fieldStatus,
+                      setDestinationIndicatorId
+                    )
+                  }
+                  onMouseLeave={() => setDestinationIndicatorId(undefined)}
+                  onClick={() => {
+                    permissionToMove ? handlePawnClick(field) : undefined;
+                  }}
+                ></div>
+              );
+            })}
           </div>
         );
       })}

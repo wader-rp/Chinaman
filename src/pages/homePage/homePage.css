@@ -1,20 +1,18 @@
 .home-page {
-  display: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-items: center;
-
-  height: 100vh;
+  justify-content: space-between;
+  min-height: 100vh;
   background-color: var(--bluegray-medium);
   font-family: "Gang of Three";
   letter-spacing: 6px;
   padding: 2.5rem 10rem;
+  gap: 1.5rem;
 }
 
 .title {
   font-size: 4rem;
-
   letter-spacing: 1rem;
   border: 15px double var(--bluegray-light);
   border-radius: 10px;
@@ -25,9 +23,8 @@
 
 .select-container {
   display: flex;
-  justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 3rem;
   font-size: 2rem;
 }
 
