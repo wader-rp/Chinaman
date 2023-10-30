@@ -1,8 +1,8 @@
-import { PlayerSetupForm } from "../../components/playerSetupForm/PlayerSetupForm";
 import "./playerSelectPage.css";
 import "../../styles/buttons.css";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { NavLink } from "react-router-dom";
+import { PlayerSetup } from "../../components/playerSetupForm/playerSetup";
 
 export const PlayerSetupPage = () => {
   const { players } = useGameContext();
@@ -11,7 +11,13 @@ export const PlayerSetupPage = () => {
       <h1 className="header">PLAYERS SETUP</h1>
       <div className="playersSetup-forms">
         {players.map((player) => {
-          return <PlayerSetupForm key={player.id} id={player.id} />;
+          return (
+            <PlayerSetup
+              key={player.id}
+              id={player.id}
+              playerName={player.playerName}
+            />
+          );
         })}
       </div>
       <NavLink to={"/gameboard"} className="nav-link">

@@ -4,22 +4,24 @@
   align-items: center;
   justify-content: space-evenly;
   flex-direction: column;
-
-  gap: 0.5rem;
+  gap: 1.5rem;
   background: var(--bluegray-medium);
-  height: 100vh;
+  min-height: 100vh;
   color: var(--bluegray-font);
-  padding: 0 3rem;
-}
-.header {
-  letter-spacing: 5px;
+  padding: 1rem 10rem;
   font-family: "Gang of Three";
-  font-size: 2.5rem;
+  letter-spacing: 5px;
+}
+
+.header {
+  text-align: center;
+  font-size: 3rem;
 }
 
 .playersSetup-forms {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
   gap: 3rem;
 }

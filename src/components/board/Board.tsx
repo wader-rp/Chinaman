@@ -58,7 +58,11 @@ export const Board = () => {
   console.log(cellSize, window.innerHeight);
 
   return (
-    <div className="fields-container" ref={ref}>
+    <div
+      className="fields-container"
+      style={{ height: cellSize * 11 }}
+      ref={ref}
+    >
       {fieldStatus.map((field) => {
         const permissionToMove = isPresentPawnPermittedToMove(
           field,
@@ -72,9 +76,9 @@ export const Board = () => {
             key={field.id}
             className="singleField"
             style={{
-              width: cellSize - 10,
-              height: cellSize - 10,
-              top: cellSize * field.position.y + 10,
+              width: cellSize - 11,
+              height: cellSize - 11,
+              top: cellSize * field.position.y,
               left: cellSize * field.position.x,
               borderColor: fieldColors(field.id, players),
               backgroundColor:

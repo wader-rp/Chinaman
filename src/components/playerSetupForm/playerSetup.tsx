@@ -9,6 +9,7 @@ type FormForHumanProps = {
   playerName: string;
 };
 
+
 export const PlayerSetup = ({ id, playerName }: FormForHumanProps) => {
   const { players, setPlayers } = useGameContext();
 
@@ -31,7 +32,7 @@ export const PlayerSetup = ({ id, playerName }: FormForHumanProps) => {
   };
 
   return (
-    <div className="playerSetup-container">
+    <div className="playerSetup-form">
       <div className="playerSetup-row">
         <span className="playerSetup-text">NAME</span>
         <input

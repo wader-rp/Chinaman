@@ -18,7 +18,7 @@ export const HomePage = () => {
 
   return (
     <div className="home-page">
-      <span className="title">CHINAMAN</span>
+      <h1 className="title">CHINAMAN</h1>
       <h2>RULES</h2>
       <hr />
       <div className="rules">

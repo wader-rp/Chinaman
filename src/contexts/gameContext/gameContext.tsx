@@ -65,7 +65,7 @@ export const GameContextProvider = ({ children }: GameContextProviderProps) => {
       setMoveCountToLast
     );
     console.log(roundState);
-  }, [roundState.rollCount, roundState.moveCount]);
+  }, [roundState.rollCount, roundState.moveCount, roundState.activePlayer]);
 
   const setNextActivePlayer = () => {
     setRoundState((prev) => ({

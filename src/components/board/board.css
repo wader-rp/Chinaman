@@ -1,5 +1,8 @@
 .fields-container {
   position: relative;
+
+  width: 100%;
+
   background: rgb(255, 255, 255);
   background: radial-gradient(
     circle,
@@ -12,13 +15,14 @@
   position: absolute;
   border: 2px solid;
   border-radius: 25%;
+  transform: translate(10%, 10%);
 }
 
 .pawn {
   position: absolute;
   width: 65%;
   height: 65%;
-  box-shadow: 0 0 2px;
+  box-shadow: 0 0 10px var(--bluegray-dark);
   border-radius: 50%;
   cursor: pointer;
   translate: 25% 25%;

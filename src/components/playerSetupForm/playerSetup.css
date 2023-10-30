@@ -1,27 +1,32 @@
-.playerSetup-container {
-  padding: 5rem;
+.playerSetup-form {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
-
-  gap: 1.5rem;
-  font-family: "Gang of Three";
-  letter-spacing: 5px;
+  width: max(30vw, 300px);
+  height: max(20vh, 200px);
+  padding: 7rem 0;
+  gap: 2rem;
+  background-color: var(--bluegray-light);
+  box-shadow: 3px 7px 20px var(--bluegray-shadow);
+  border-radius: 20px;
+  border: 6px double var(--bluegray-medium);
 }
 
 .playerSetup-row {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  width: 80%;
   align-items: center;
-  gap: 2rem;
 }
 
 .playerSetup-text {
-  font-size: 1.5rem;
+  font-size: 2rem;
 }
 
 .playerSetup-input {
-  width: 100%;
+  width: 50%;
   height: 40px;
   padding: 5px;
   border-radius: 10px;
@@ -32,4 +37,27 @@
   letter-spacing: 2px;
   font-family: inherit;
   background-color: var(--bluegray-light);
+}
+
+.playerSetup-title {
+  font-size: 1rem;
+  letter-spacing: 5px;
+
+  text-align: center;
+}
+
+select {
+  width: 7rem;
+  height: 40px;
+  padding: 3px;
+  border-radius: 10px;
+  border: 2px solid var(--bluegray-dark);
+  cursor: pointer;
+  appearance: none;
+
+  letter-spacing: 2px;
+  font-family: "Gang of Three";
+  font-size: 100%;
+  background-color: var(--bluegray-light);
+  text-align-last: center;
 }

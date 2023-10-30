@@ -7,16 +7,16 @@
   background-color: var(--bluegray-medium);
   font-family: "Gang of Three";
   letter-spacing: 6px;
-  padding: 2.5rem 10rem;
+  padding: 2rem 10rem;
   gap: 1.5rem;
 }
 
 .title {
-  font-size: 4rem;
+  font-size: 7vw;
   letter-spacing: 1rem;
   border: 15px double var(--bluegray-light);
   border-radius: 10px;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   color: var(--bluegray-font);
   text-shadow: 3px 3px var(--bluegray-light);
 }
