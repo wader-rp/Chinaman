@@ -6,6 +6,7 @@ export type DiceRollAPI = {
   diceRollDisplay: number;
   handleRollClick: () => Promise<void>;
   isRolling: boolean;
+  rollDeg: number;
 };
 
 export type UseDiceRollProps = Pick<
@@ -27,39 +28,16 @@ export const useDiceRoll = ({
   const initialValue = valueFromDiceRoll;
 
   const [diceRollDisplay, setDiceRollDisplay] = useState<number>(initialValue);
+  const [rollDeg, setRollDeg] = useState<number>(0);
   const [isRolling, setIsRolling] = useState(false);
-
-  // useEffect(() => {
-  //   let iteration = 0;
-  //   let interval: NodeJS.Timer;
-  //   if (isRolling) {
-  //     interval = setInterval(() => {
-  //       iteration++;
-  //       const diceValue = diceRoll();
-  //       setDiceRollDisplay(diceValue);
-  //       if (iteration > 6) {
-  //         setValueFromDiceRoll(diceValue);
-  //         clearInterval(interval);
-  //         setIsRolling(false);
-  //         rollCountIncrement();
-  //         setIsRolled(true);
-  //       }
-  //     }, 150);
-  //   }
-
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, [isRolling]);
 
   const rollDiceAsync = async () => {
     return new Promise<void>((resolve) => {
       setIsRolling(true);
       let iteration = 0;
-      // let interval: NodeJS.Timer;
-
       const interval = setInterval(() => {
         iteration++;
+        handleDegreeChange(iteration);
         const diceValue = diceRoll();
         setDiceRollDisplay(diceValue);
         if (iteration > 6) {
@@ -70,7 +48,16 @@ export const useDiceRoll = ({
           setIsRolled(true);
           resolve();
         }
-      }, 150);
+      }, 100);
+    });
+  };
+
+  const handleDegreeChange = (iteration: number) => {
+    setRollDeg((prev) => {
+      if (iteration > 6) {
+        return 0;
+      }
+      return prev + 25;
     });
   };
 
@@ -80,5 +67,5 @@ export const useDiceRoll = ({
     }
   };
 
-  return { diceRollDisplay, handleRollClick, isRolling };
+  return { diceRollDisplay, handleRollClick, isRolling, rollDeg };
 };
