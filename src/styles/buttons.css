@@ -7,7 +7,9 @@
   cursor: pointer;
   border: none;
   outline: none;
-  font: 1.5rem "Gang of Three", bold;
+  font-size: 1.5rem "Gang of Three";
+  font-family: "Gang of Three";
+  font-weight: bold;
   letter-spacing: 4px;
 }
 

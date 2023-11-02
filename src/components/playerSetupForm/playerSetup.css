@@ -49,15 +49,13 @@
 select {
   width: 7rem;
   height: 40px;
-  padding: 3px;
+
   border-radius: 10px;
   border: 2px solid var(--bluegray-dark);
   cursor: pointer;
   appearance: none;
-
   letter-spacing: 2px;
   font-family: "Gang of Three";
-  font-size: 100%;
   background-color: var(--bluegray-light);
   text-align-last: center;
 }
