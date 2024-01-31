@@ -1,4 +1,7 @@
 # Chinaman Board Game
+
+🎮 [Play Chinaman on Netlify](https://your-netlify-app.netlify.app)
+
 ## Overview:
 Chinaman is an engaging board game designed for up to four players, offering a delightful mix of strategy and luck. With a gameplay structure inspired by the classic Ludo (In Polish, it is called Chinaman), this project provides an accessible and visually appealing experience for players of all ages.
 
