@@ -22,7 +22,6 @@ export const GameBoard = () => {
             );
           })}
       </div>
-
       <div className="board">
         <Board />
       </div>
