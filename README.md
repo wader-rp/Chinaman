@@ -1,6 +1,6 @@
 # Chinaman Board Game
 ## Overview:
-Chinaman is an engaging board game designed for up to four players, offering a delightful mix of strategy and luck. With a gameplay structure inspired by the classic Ludo (it's called Chinaman in polish), this project provides an accessible and visually appealing experience for players of all ages.
+Chinaman is an engaging board game designed for up to four players, offering a delightful mix of strategy and luck. With a gameplay structure inspired by the classic Ludo (In Polish, it is called Chinaman), this project provides an accessible and visually appealing experience for players of all ages.
 
 
 -🎲 Roll the dice to determine your movement.
