@@ -55,8 +55,6 @@ export const Board = () => {
     setDestinationIndicatorId(undefined);
   };
 
-  console.log(cellSize, window.innerHeight);
-
   return (
     <div
       className="fields-container"
