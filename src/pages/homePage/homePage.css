@@ -12,7 +12,7 @@
 }
 
 .title {
-  font-size: 7vw;
+  font-size: 5vw;
   letter-spacing: 1rem;
   border: 15px double var(--bluegray-light);
   border-radius: 10px;
@@ -39,6 +39,7 @@
 }
 .home-page p {
   text-align: center;
+  font-size: 0.9rem;
 }
 
 .home-page select {

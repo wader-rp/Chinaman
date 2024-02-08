@@ -1,5 +1,4 @@
 import { fieldColors } from "./helpers/generateFieldColors";
-import "../board/board.css";
 import { getPawnColor } from "./helpers/generatePawnColors";
 import { useGameContext } from "../../contexts/gameContext/gameContext";
 import { Field } from "./data/types/fieldsTypes";
@@ -11,9 +10,10 @@ import { dispatchPawnFromBaseField } from "./helpers/dispatchPawnFromBaseField";
 import { movePawnCertainNumberOfFields } from "../../contexts/gameContext/helpers/movePawnCertainNumberOfFields";
 import { useResize } from "../../hooks/useResize";
 
+import "../board/board.css";
+
 export const Board = () => {
   const ref = useRef<HTMLDivElement>(null);
-  // const size = useBoardSize();
   const [cellSize, setCellSize] = useState(0);
   const [destinationIndicatorId, setDestinationIndicatorId] = useState<
     number | undefined
@@ -74,8 +74,8 @@ export const Board = () => {
             key={field.id}
             className="singleField"
             style={{
-              width: cellSize - 11,
-              height: cellSize - 11,
+              width: cellSize - 10.5,
+              height: cellSize - 10.5,
               top: cellSize * field.position.y,
               left: cellSize * field.position.x,
               borderColor: fieldColors(field.id, players),
