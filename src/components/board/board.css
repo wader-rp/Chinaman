@@ -14,7 +14,7 @@
   position: absolute;
   border: 2px solid;
   border-radius: 25%;
-  transform: translate(10%, 10%);
+  transform: translate(40%, 10%);
 }
 
 .pawn {

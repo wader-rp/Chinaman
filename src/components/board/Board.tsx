@@ -19,7 +19,7 @@ export const Board = () => {
     number | undefined
   >();
   const updateCellSize = () =>
-    setCellSize((ref.current?.clientWidth ?? 0) / 11);
+    setCellSize((ref.current?.clientWidth ?? 0) / 11.5);
   useResize(updateCellSize, true);
   const {
     setFieldStatus,
